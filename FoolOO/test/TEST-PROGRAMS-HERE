@@ -1,1 +1,14 @@
-Put test programs in this folder
+PUT TEST PROGRAMS HERE
+
+example of program:
+
+/* 
+  - specification of the Fool program
+  - parameters
+  - output
+*/
+
+let int a=1;
+ in 
+  // other comments
+  a + 1;
