@@ -10,3 +10,7 @@
 /SVMLexer.tokens
 /SVMParser.java
 /SVMVisitor.java
+/FOOLBaseListener.java
+/FOOLListener.java
+/SVMBaseListener.java
+/SVMListener.java

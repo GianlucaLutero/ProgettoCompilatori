@@ -1,0 +1,46 @@
+INSTALL Antlr 4
+
+   - Install Eclipse (4.4 Luna)
+        Download it from https://www.eclipse.org/downloads/
+
+   - Install XText 2.7.3
+       -- Go to Help > Install New Software...
+       -- Enter http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/ in the Work With textbox
+       -- Hit Enter and wait for the list to load (this will take a few moments)
+       -- Expand the Xtext node and check Xtext Complete SDK (ensure the version is 2.7.3x)
+       -- Click Next, agree to the EULA, and click finish
+       -- Let the installer finish and restart Eclipse
+
+    - Install Faceted Project Framework
+       -- Go to Help > Install New Software...
+       -- Enter http://download.eclipse.org/releases/luna in the Work With textbox
+       -- Hit Enter and wait for the list to load (this will take a few moments)
+       -- In the filter text box enter Facet
+       -- Select Eclipse Faceted Project Framework and Eclipse Faceted Project Framework JDT Enablement
+       -- Click Next, agree to the EULA, and click finish
+       -- Let the installer finish and restart Eclipse
+
+    - Install ANTLR 4 IDE
+       -- Go to Help > Eclipse Marketplace...
+       -- Search for antlr
+       -- Choose ANTLR 4 IDE (make sure it's ANTLR 4 IDE not ANTLR IDE)
+       -- Click Install
+       -- Let the installer finish clicking ok if it prompts and restart Eclipse
+
+    - Obtain a copy of antlr-4.x-complete.jar
+       -- Download the file from http://www.antlr.org/download.html
+       -- Save it somewhere you'll remember
+
+IMPORT PROJECT
+
+    - File -> Import -> General -> Projects from folder or archive
+    - In input source select /ProgettoCompilatori/FoolOO
+    - Click Finish 
+
+SETTINGS AFTER INSTALL
+
+    - Right click on the project and select Properties
+    - In ANTL4 -> Tool check Enable project specific settings
+    - Click Add and select from ProgettoCompilatori/FoolOO/lib/antlr-4.7-complete.jar
+    - In Options uncheck Generate a parse tree listener
+    - In Directory cancel the current directory and type ./src
