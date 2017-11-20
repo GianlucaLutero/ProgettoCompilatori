@@ -16,6 +16,11 @@ import util.SemanticError;
 import ast.FoolVisitorImpl;
 import ast.Node;
 
+/*
+ * Nuovo commento inutile
+ */
+
+
 public class Test {
     public static void main(String[] args) throws Exception {
       
