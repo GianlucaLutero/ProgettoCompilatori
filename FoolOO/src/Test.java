@@ -20,6 +20,7 @@ public class Test {
     public static void main(String[] args) throws Exception {
       
         String fileName = "prova.fool";
+        // CIAONE!!
       
         FileInputStream is = new FileInputStream(fileName);
         ANTLRInputStream input = new ANTLRInputStream(is);
