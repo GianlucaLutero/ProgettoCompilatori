@@ -1,0 +1,9 @@
+/* Classe e chiamata metodo
+*/
+class A {
+    int f() 8;
+};
+let
+	A a = new A;
+in
+	print( a.f() );
