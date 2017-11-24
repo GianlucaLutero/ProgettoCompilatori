@@ -1,0 +1,9 @@
+/*
+ * Dichiaro una variabile di tipo int e le sommo 1
+ * param: int a
+ * output: 2
+ */
+
+let int a=1;
+ in 
+  a + 1;
