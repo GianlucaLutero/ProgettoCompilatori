@@ -1,0 +1,15 @@
+/*
+ * Dichiarazione semplice di una classe
+ */
+ 
+ class pippo(int a,int b){
+ 
+    // Metodo della classe
+    bool prova(bool c, int d) // c e d sono i parametri del metodo
+ 
+     // x e' un parametro locale del metodo
+     let int x = 0; in  
+    
+        x = c + d;
+        
+ }       
