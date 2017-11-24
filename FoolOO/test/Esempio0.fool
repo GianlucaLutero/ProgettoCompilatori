@@ -1,8 +1,10 @@
+/* Se y è uguale a 8 stampa True, altrimenti stampa y */
+
 let int y = 5 + 2;
 	bool f(int n, int m)
 		let int x = m; 
-		in x==y;
+		in x == y;
 in print ( if f(y, 8) 
-	then { false } 
-	else { 10 }
+	then { True } 
+	else { y }
 	);
