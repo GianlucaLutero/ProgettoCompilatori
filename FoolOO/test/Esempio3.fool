@@ -1,0 +1,8 @@
+let int foo(int n)
+	let int gee(int n) n+1 ; in
+	if (n==0) then { 1 } else { n*gee(n - 1) } ;
+in print(foo(3)) ;
+
+let int dh(int n)
+	if (n > 10) then {(n-10)} else {n*999999999};
+in print (dh(5)); 
