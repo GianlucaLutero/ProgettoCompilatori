@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /FOOL.tokens
 /FOOLBaseVisitor.java
 /FOOLLexer.java
@@ -11,20 +10,6 @@
 /SVMLexer.tokens
 /SVMParser.java
 /SVMVisitor.java
-=======
-/FOOL.tokens
-/FOOLBaseVisitor.java
-/FOOLLexer.java
-/FOOLLexer.tokens
-/FOOLParser.java
-/FOOLVisitor.java
-/SVM.tokens
-/SVMBaseVisitor.java
-/SVMLexer.java
-/SVMLexer.tokens
-/SVMParser.java
-/SVMVisitor.java
->>>>>>> 5343d24f80e78d709ced9229fdf2c34dd385531e
 /FOOLBaseListener.java
 /FOOLListener.java
 /SVMBaseListener.java

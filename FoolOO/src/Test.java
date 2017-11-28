@@ -16,15 +16,11 @@ import util.SemanticError;
 import ast.FoolVisitorImpl;
 import ast.Node;
 
-/*
- * Nuovo commento inutile dio
- */
-
 
 public class Test {
     public static void main(String[] args) throws Exception {
       
-        String fileName = "prova.fool";
+        String fileName = "./test/Esempio0.fool";
         // CIAONE!!
       
         FileInputStream is = new FileInputStream(fileName);
