@@ -17,6 +17,17 @@ import parser.FOOLParser;
 import util.Environment;
 import util.SemanticError;
 
+/*
+ * Main del progetto 
+ * 
+ * TEST 
+ * 
+ * Vengono caricati i file dalla cartella test ed eseguiti uno alla volta
+ * TO DO: aggiungere la possibilita' di segliere se eseguire i test o un file arbitrario
+ * 
+ * 
+ * */
+
 public class FoolOOInterpreter {
 
 	public static void main(String[] args) {
@@ -61,6 +72,7 @@ public class FoolOOInterpreter {
 
 				        Environment env = new Environment();
 				        				        
+				        // Capire perche' ast = null 
 				        //ArrayList<SemanticError> err = ast.checkSemantics(env);
 			        }
 					
