@@ -10,6 +10,8 @@
      // x e' un parametro locale del metodo
      let int x = 0; in  
     
-        x = c + d;
+        c + d;
         
- }       
+ };
+ 
+ 3 + 3;

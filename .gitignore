@@ -1,4 +1,6 @@
 /.metadata/
 FoolOO/.settings
 *.class
+*.res
+*.asm
 FoolOO/.project

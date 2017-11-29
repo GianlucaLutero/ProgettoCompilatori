@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -49,8 +50,11 @@ public class FoolOOInterpreter {
 			}
 		});
 		
+		System.out.println("Number of tests: "+ testList.length);
+		
 		//Esegue i test
 		for(int i = 0; i < testList.length; ++i) {
+			
 			
 			if(testList[i].isFile()) {
 				System.out.println("---------------------------------------------------");
@@ -60,6 +64,9 @@ public class FoolOOInterpreter {
 			    // Inizio parsing di un test
 			    try {
 			    	
+			    	// Inizializzo il file di output dei risultati
+			    	PrintWriter writer = new PrintWriter("./test/" + testList[i].getName().substring(0, testList[i].getName().length() - 5)+".res","UTF-8");
+					
 			    	
 					FileInputStream in = new FileInputStream(testList[i]);
 					CharStream input = CharStreams.fromFileName(testList[i].getPath());
@@ -80,19 +87,23 @@ public class FoolOOInterpreter {
 
 				        Environment env = new Environment();
 				        				        
+				        //Momentaneo, serve solo per fare funzionare temporaneamente i test con le classi
+				        if(ast == null)
+				        	continue;
+				        
 				        ArrayList<SemanticError> err = ast.checkSemantics(env);
 				        
 				        if(err.size()>0){
-				        	System.out.println("You had: " +err.size()+" errors:");
+				        	writer.println("You had: " +err.size()+" errors:");
 				        	for(SemanticError e : err)
-				        		System.out.println("\t" + e);
+				        		writer.println("\t" + e);
 				        }else{
 				        
-					        System.out.println("Visualizing AST...");
-					        System.out.println(ast.toPrint(""));
+					        writer.println("Visualizing AST...");
+					        writer.println(ast.toPrint(""));
 					
 					        Node type = ast.typeCheck(); //type-checking bottom-up 
-					        System.out.println(type.toPrint("Type checking ok! Type of the program is: "));
+					        writer.println(type.toPrint("Type checking ok! Type of the program is: "));
 					        
 					      
 					        // CODE GENERATION  
@@ -100,7 +111,7 @@ public class FoolOOInterpreter {
 					        BufferedWriter out = new BufferedWriter(new FileWriter(testList[i].getName()+".asm")); 
 					        out.write(code);
 					        out.close(); 
-					        System.out.println("Code generated! Assembling and running generated code.");
+					        writer.println("Code generated! Assembling and running generated code.");
 					        
 					        FileInputStream isASM = new FileInputStream(testList[i].getName()+".asm");
 					        CharStream inputASM = CharStreams.fromStream(isASM);
@@ -110,12 +121,17 @@ public class FoolOOInterpreter {
 					        
 					        parserASM.assembly();
 					        
-					        System.out.println("You had: "+lexerASM.lexicalErrors+" lexical errors and "+parserASM.getNumberOfSyntaxErrors()+" syntax errors.");
+					        writer.println("You had: "+lexerASM.lexicalErrors+" lexical errors and "+parserASM.getNumberOfSyntaxErrors()+" syntax errors.");
 					        if (lexerASM.lexicalErrors>0 || parserASM.getNumberOfSyntaxErrors()>0) System.exit(1);
 					
+					        //Chiudo il file
+					        writer.close();
+					        
 					        System.out.println("Starting Virtual Machine...");
 					        ExecuteVM vm = new ExecuteVM(parserASM.code);
 					        vm.cpu();
+					        
+					     
 				        }
 			        }
 					

@@ -1,5 +1,5 @@
 /*
 * Programma fool composto solo da un'espressione
+* NOTA: Il parser non riconosce una singola espressione come programma da implementare ProgExprNode
 */
-
 3 + 2;
