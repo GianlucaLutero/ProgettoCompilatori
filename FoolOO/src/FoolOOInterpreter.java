@@ -1,10 +1,13 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -12,8 +15,11 @@ import org.antlr.v4.runtime.RecognitionException;
 
 import ast.FoolVisitorImpl;
 import ast.Node;
+import parser.ExecuteVM;
 import parser.FOOLLexer;
 import parser.FOOLParser;
+import parser.SVMLexer;
+import parser.SVMParser;
 import util.Environment;
 import util.SemanticError;
 
@@ -47,6 +53,7 @@ public class FoolOOInterpreter {
 		for(int i = 0; i < testList.length; ++i) {
 			
 			if(testList[i].isFile()) {
+				System.out.println("---------------------------------------------------");
 			    System.out.println("Executing test: " + testList[i].getName());
 			    
 			    
@@ -64,6 +71,7 @@ public class FoolOOInterpreter {
 			        }else {
 			        	
 			        	
+			        	//Parsing del programma fool
 			        	FOOLParser parser = new FOOLParser(tokenStream);
 			        	
 				        FoolVisitorImpl visitor = new FoolVisitorImpl();  
@@ -72,8 +80,43 @@ public class FoolOOInterpreter {
 
 				        Environment env = new Environment();
 				        				        
-				        // Capire perche' ast = null 
-				        //ArrayList<SemanticError> err = ast.checkSemantics(env);
+				        ArrayList<SemanticError> err = ast.checkSemantics(env);
+				        
+				        if(err.size()>0){
+				        	System.out.println("You had: " +err.size()+" errors:");
+				        	for(SemanticError e : err)
+				        		System.out.println("\t" + e);
+				        }else{
+				        
+					        System.out.println("Visualizing AST...");
+					        System.out.println(ast.toPrint(""));
+					
+					        Node type = ast.typeCheck(); //type-checking bottom-up 
+					        System.out.println(type.toPrint("Type checking ok! Type of the program is: "));
+					        
+					      
+					        // CODE GENERATION  
+					        String code=ast.codeGeneration(); 
+					        BufferedWriter out = new BufferedWriter(new FileWriter(testList[i].getName()+".asm")); 
+					        out.write(code);
+					        out.close(); 
+					        System.out.println("Code generated! Assembling and running generated code.");
+					        
+					        FileInputStream isASM = new FileInputStream(testList[i].getName()+".asm");
+					        CharStream inputASM = CharStreams.fromStream(isASM);
+					        SVMLexer lexerASM = new SVMLexer(inputASM);
+					        CommonTokenStream tokensASM = new CommonTokenStream(lexerASM);
+					        SVMParser parserASM = new SVMParser(tokensASM);
+					        
+					        parserASM.assembly();
+					        
+					        System.out.println("You had: "+lexerASM.lexicalErrors+" lexical errors and "+parserASM.getNumberOfSyntaxErrors()+" syntax errors.");
+					        if (lexerASM.lexicalErrors>0 || parserASM.getNumberOfSyntaxErrors()>0) System.exit(1);
+					
+					        System.out.println("Starting Virtual Machine...");
+					        ExecuteVM vm = new ExecuteVM(parserASM.code);
+					        vm.cpu();
+				        }
 			        }
 					
 					

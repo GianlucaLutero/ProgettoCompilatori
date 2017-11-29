@@ -9,6 +9,6 @@ let
 			x == y;
 in 
 	print ( if f(y, 8) 
-	then { True } 
+	then { true } 
 	else { y }
 	);
