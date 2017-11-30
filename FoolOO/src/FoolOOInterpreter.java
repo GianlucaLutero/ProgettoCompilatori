@@ -86,10 +86,6 @@ public class FoolOOInterpreter {
 				        Node ast = visitor.visit(parser.prog());  
 
 				        Environment env = new Environment();
-				        				        
-				        //Momentaneo, serve solo per fare funzionare temporaneamente i test con le classi
-				        if(ast == null)
-				        	continue;
 				        
 				        ArrayList<SemanticError> err = ast.checkSemantics(env);
 				        
@@ -142,6 +138,14 @@ public class FoolOOInterpreter {
 					System.out.println("No file with name: " + testList[i].getName());
 					e.printStackTrace();
 				
+			    } catch(ArrayIndexOutOfBoundsException ao) {
+			    	
+			    	ao.printStackTrace();
+			    	
+			    } catch(NullPointerException np) {
+			    	
+			    	np.printStackTrace();
+			    	
 			    }
 			    
 			    System.out.println("End test: " + testList[i].getName());
