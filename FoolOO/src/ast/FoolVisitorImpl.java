@@ -7,6 +7,8 @@ import java.util.List;
 import parser.*;
 import parser.FOOLParser.BaseExpContext;
 import parser.FOOLParser.BoolValContext;
+import parser.FOOLParser.ClassExpContext;
+import parser.FOOLParser.ClassdecContext;
 import parser.FOOLParser.DecContext;
 import parser.FOOLParser.ExpContext;
 import parser.FOOLParser.FactorContext;
@@ -25,6 +27,26 @@ import util.SemanticError;
 
 public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
+	@Override
+	public Node visitClassExp(ClassExpContext ctx) {
+		
+		ProgClassNode res;
+		
+		ArrayList<Node> classDeclarations = new ArrayList<Node>();
+		
+		for(ClassdecContext cc: ctx.classdec()) {
+			
+			classDeclarations.add(visit(cc));
+			
+		}
+		
+		Node exp = visit(ctx.exp());
+		
+		res = new ProgClassNode(classDeclarations,exp);		
+		
+		return res;
+		
+	}
 	
 	
 	@Override

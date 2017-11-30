@@ -1,5 +1,5 @@
 /*
- * Dichiarazione semplice di una classe
+ Dichiarazione semplice di una classe
  */
  
  class pippo(int a,int b){
