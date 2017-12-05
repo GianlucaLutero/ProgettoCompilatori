@@ -25,13 +25,13 @@ import util.Environment;
 import util.SemanticError;
 
 /*
- * Main del progetto 
+ * Interprete FoolOO
  * 
- * TEST 
- * 
- * Vengono caricati i file dalla cartella test ed eseguiti uno alla volta
+ * L'interprete carica i file dalla cartella test e li esegue uno alla volta
  * TO DO: aggiungere la possibilita' di segliere se eseguire i test o un file arbitrario
  * 
+ * 
+ * Authors: Davide Allevi, Silvia Borgiani, Gianluca Lutero e Filippo Soncini
  * 
  * */
 
@@ -52,7 +52,7 @@ public class FoolOOInterpreter {
 		
 		System.out.println("Number of tests: "+ testList.length);
 		
-		//Esegue i test
+		//Inizia l'esecuzione dei programmi
 		for(int i = 0; i < testList.length; ++i) {
 			
 			
@@ -61,7 +61,6 @@ public class FoolOOInterpreter {
 			    System.out.println("Executing test: " + testList[i].getName());
 			    
 			    
-			    // Inizio parsing di un test
 			    try {
 			    	
 			    	// Inizializzo il file di output dei risultati

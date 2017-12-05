@@ -27,21 +27,26 @@ import util.SemanticError;
 
 public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
+	
 	@Override
 	public Node visitClassExp(ClassExpContext ctx) {
-		
+	    
+		// risultato della visita di classExp
 		ProgClassNode res;
 		
+		// lista delle dichiarazioni di classi
 		ArrayList<Node> classDeclarations = new ArrayList<Node>();
 		
+		// visita delle dichiarazioni
 		for(ClassdecContext cc: ctx.classdec()) {
 			
 			classDeclarations.add(visit(cc));
 			
 		}
 		
+		// visita dell'espressione
 		Node exp = visit(ctx.exp());
-		
+
 		res = new ProgClassNode(classDeclarations,exp);		
 		
 		return res;
