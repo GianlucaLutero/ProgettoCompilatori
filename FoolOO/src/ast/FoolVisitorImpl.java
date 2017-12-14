@@ -29,6 +29,24 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
 	
 	@Override
+	public Node visitClassdec(ClassdecContext ctx) {
+		// Si devono ricavare il nome della classe, la lista degli attributi e la lista dei metodi
+		
+		ClassdecNode res;
+		ArrayList<Node> classAttributes = new ArrayList<Node>();
+		
+		
+		for(VardecContext vd: ctx.vardec()) {
+			classAttributes.add(visit(vd));
+		}
+		
+		res = new ClassdecNode(ctx.ID().toString(),classAttributes);
+		
+		return res;
+	}
+	
+	
+	@Override
 	public Node visitClassExp(ClassExpContext ctx) {
 	    
 		// risultato della visita di classExp

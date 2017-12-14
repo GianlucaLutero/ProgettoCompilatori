@@ -6,11 +6,29 @@ import util.Environment;
 import util.SemanticError;
 
 public class ClassdecNode implements Node {
+	
+	String className;
+	ArrayList<Node> classAttr;
+	
+	public  ClassdecNode(String cName,ArrayList<Node> attr) {
+		
+		className = cName;
+		classAttr = attr;
+	
+	}
 
 	@Override
 	public String toPrint(String indent) {
 		// TODO Auto-generated method stub
-		return "Classe Prova\n";
+		String classAst = indent + "Declared " + className+"\n";
+		
+	/*	
+		for(Node n: classAttr) {
+			classAst += n.toPrint(indent + "  ");
+		}
+	*/	
+		
+		return classAst;
 	}
 
 	@Override

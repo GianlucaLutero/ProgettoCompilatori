@@ -20,8 +20,8 @@ public class ProgClassNode implements Node{
 	public String toPrint(String indent) {
         String declstr = "";
         
-   //     for (Node dec:declist)
-   //         declstr+=dec.toPrint(indent +"  ");
+        for (Node dec:declist)
+            declstr+=dec.toPrint(indent +"  ");
         
         return indent+"ProgClassNode\n" + declstr + exp.toPrint(indent+"  ") ;
         

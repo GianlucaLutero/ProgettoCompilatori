@@ -1,0 +1,22 @@
+/*
+ Dichiarazione di una lista di classi
+ */
+ class pippo(int a,int b){
+ 
+    // Metodo della classe
+    bool prova(bool c, int d) // c e d sono i parametri del metodo
+ 
+     // x e' un parametro locale del metodo
+     let int x = 0; in  
+    
+        c + d;
+        
+ }
+ class topolino(bool k){
+ 
+   int bello()
+      let int z =0; in
+        z + 1;
+ };
+ 
+ let int x=0; in 3 + 3;
