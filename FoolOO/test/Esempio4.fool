@@ -6,4 +6,5 @@ class A {
 let
 	A a = new A;
 in
-	print( a.f() );
+    a.f();
+	print("ciao");

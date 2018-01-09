@@ -137,13 +137,9 @@ public class FoolOOInterpreter {
 					System.out.println("No file with name: " + testList[i].getName());
 					e.printStackTrace();
 				
-			    } catch(ArrayIndexOutOfBoundsException ao) {
+			    } catch(Throwable t) {
 			    	
-			    	ao.printStackTrace();
-			    	
-			    } catch(NullPointerException np) {
-			    	
-			    	np.printStackTrace();
+			    	t.printStackTrace();
 			    	
 			    }
 			    

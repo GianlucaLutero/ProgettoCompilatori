@@ -17,6 +17,8 @@ import parser.FOOLParser.FunExpContext;
 import parser.FOOLParser.IfExpContext;
 import parser.FOOLParser.IntValContext;
 import parser.FOOLParser.LetInExpContext;
+import parser.FOOLParser.MethodExpContext;
+import parser.FOOLParser.NewExpContext;
 import parser.FOOLParser.SingleExpContext;
 import parser.FOOLParser.TermContext;
 import parser.FOOLParser.TypeContext;
@@ -27,6 +29,22 @@ import util.SemanticError;
 
 public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
+	@Override
+	public Node visitMethodExp(MethodExpContext ctx) {
+		// TO DO
+		// Simile alla chiamata di funzione
+		// in piu' si deve controllare che il metodo esista nella
+		// classe, da fare nel checksemantics
+		return new MethodExpNode();
+	}
+	
+	@Override
+	public Node visitNewExp(NewExpContext ctx) {
+		// TO DO
+		// Si deve ricavare il nome della classe
+		// e la lista dei parametri con cui inizializzare l'oggetto
+		return new NewExpNode();
+	}
 	
 	@Override
 	public Node visitClassdec(ClassdecContext ctx) {
@@ -34,8 +52,7 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 		ClassdecNode res;
 		
-//		res = new ClassdecNode(ctx.ID().toString(),classAttributes);
-	
+        // res = new ClassdecNode(ctx.ID().toString(),classAttributes);
 		res = new ClassdecNode(ctx.ID().toString(),ctx.vardec(),ctx.fun());
 		
 		return res;
