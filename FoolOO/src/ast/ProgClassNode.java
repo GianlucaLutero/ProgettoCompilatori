@@ -42,6 +42,9 @@ public class ProgClassNode implements Node{
 		// TODO Auto-generated method stub
 		// Genero prima il codice per le classi e poi
 		// per l'espressione
+		// Attivo il supporto a run time degli oggetti
+		// Alla fine il programma cancella il contenuto dello heap
+		ObjectHandler.active = true;
 		return "halt\n";
 	}
 
