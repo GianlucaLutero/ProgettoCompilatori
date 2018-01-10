@@ -6,29 +6,39 @@ import util.Environment;
 import util.SemanticError;
 
 public class MethodExpNode implements Node {
+	
+	String id;
+	
+	public MethodExpNode(String i) {
+		id = i;
+	}
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+		String methodxp = "";
+		
+		methodxp = indent + "Call method " + id; 
+		
+		return methodxp;
 	}
 
 	@Override
 	public Node typeCheck() {
 		// TODO Auto-generated method stub
-		return null;
+		return new BoolTypeNode();
 	}
 
 	@Override
 	public String codeGeneration() {
 		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<SemanticError> res = new ArrayList<SemanticError>();
+		return res;
 	}
 
 }

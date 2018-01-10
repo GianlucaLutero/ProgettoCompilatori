@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import parser.*;
 import parser.FOOLParser.BaseExpContext;
 import parser.FOOLParser.BoolValContext;
@@ -35,7 +37,9 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		// Simile alla chiamata di funzione
 		// in piu' si deve controllare che il metodo esista nella
 		// classe, da fare nel checksemantics
-		return new MethodExpNode();
+		// si deve anche passare l'oggetto che esegue la chiamata
+		
+		return new MethodExpNode(ctx.getText());
 	}
 	
 	@Override
@@ -76,6 +80,7 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		}
 		
 		// visita dell'espressione
+		// verifica che funzioni anche con le espressioni let
 		Node exp = visit(ctx.exp());
 
 		res = new ProgClassNode(classDeclarations,exp);		
@@ -311,7 +316,6 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		//JUST IMAGINE THERE ARE 800 stdlib functions...
 		if(ctx.ID().getText().equals("print"))
 			res = new PrintNode(args.get(0));
-		
 		else
 			//instantiate the invocation
 			res = new CallNode(ctx.ID().getText(), args);

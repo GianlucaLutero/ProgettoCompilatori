@@ -2,7 +2,6 @@ package ast;
 
 import java.util.ArrayList;
 
-import parser.FOOLParser.ClassdecContext;
 import util.Environment;
 import util.SemanticError;
 
@@ -30,18 +29,27 @@ public class ProgClassNode implements Node{
 	@Override
 	public Node typeCheck() {
 		// TODO Auto-generated method stub
+		// Controllo prima il tipo della dichiarazione di una classe
+		// e poi dell'espressione
+		for(Node cl:declist) {
+			cl.typeCheck();
+		}	
 		return exp.typeCheck();
 	}
 
 	@Override
 	public String codeGeneration() {
 		// TODO Auto-generated method stub
+		// Genero prima il codice per le classi e poi
+		// per l'espressione
 		return "halt\n";
 	}
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
+		// Controllo prima la semintica delle dichiarazioni delle classi
+		// e poi per l'espressione 
 		return exp.checkSemantics(env);
 	}
 
