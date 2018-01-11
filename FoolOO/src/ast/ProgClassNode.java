@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 
+import lib.FOOLlib;
 import util.Environment;
 import util.SemanticError;
 
@@ -28,7 +29,6 @@ public class ProgClassNode implements Node{
 
 	@Override
 	public Node typeCheck() {
-		// TODO Auto-generated method stub
 		// Controllo prima il tipo della dichiarazione di una classe
 		// e poi dell'espressione
 		for(Node cl:declist) {
@@ -39,13 +39,19 @@ public class ProgClassNode implements Node{
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		// Genero prima il codice per le classi e poi
 		// per l'espressione
 		// Attivo il supporto a run time degli oggetti
 		// Alla fine il programma cancella il contenuto dello heap
-		ObjectHandler.active = true;
-		return "halt\n";
+		//ObjectHandler.active = true;
+		String res = "";
+		
+		for(Node n:declist) {
+			res += n.codeGeneration();
+		}
+		
+		return  exp.codeGeneration() +
+		        "halt\n";
 	}
 
 	@Override

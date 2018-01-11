@@ -49,12 +49,14 @@ public class ClassdecNode implements Node {
 	@Override
 	public String codeGeneration() {
 		// TODO Auto-generated method stub
+		// genero il codice per i metodi
 		return null;
 	}
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
+		// salvo il template della classe in ObjectHandler
 		return null;
 	}
 

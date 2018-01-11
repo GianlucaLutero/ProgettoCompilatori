@@ -59,12 +59,13 @@ public class FoolOOInterpreter {
 			if(testList[i].isFile()) {
 				System.out.println("---------------------------------------------------");
 			    System.out.println("Executing test: " + testList[i].getName());
-			    
+			    String programName = testList[i].getName().substring(0, testList[i].getName().length() - 5);
+				  
 			    
 			    try {
 			    	
 			    	// Inizializzo il file di output dei risultati
-			    	PrintWriter writer = new PrintWriter("./test/" + testList[i].getName().substring(0, testList[i].getName().length() - 5)+".res","UTF-8");
+			    	PrintWriter writer = new PrintWriter("./test/" + programName+".res","UTF-8");
 					
 			    	
 					FileInputStream in = new FileInputStream(testList[i]);
@@ -103,12 +104,12 @@ public class FoolOOInterpreter {
 					      
 					        // CODE GENERATION  
 					        String code=ast.codeGeneration(); 
-					        BufferedWriter out = new BufferedWriter(new FileWriter(testList[i].getName()+".asm")); 
+					        BufferedWriter out = new BufferedWriter(new FileWriter(programName+".asm")); 
 					        out.write(code);
 					        out.close(); 
 					        writer.println("Code generated! Assembling and running generated code.");
 					        
-					        FileInputStream isASM = new FileInputStream(testList[i].getName()+".asm");
+					        FileInputStream isASM = new FileInputStream(programName+".asm");
 					        CharStream inputASM = CharStreams.fromStream(isASM);
 					        SVMLexer lexerASM = new SVMLexer(inputASM);
 					        CommonTokenStream tokensASM = new CommonTokenStream(lexerASM);
