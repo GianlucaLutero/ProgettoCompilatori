@@ -52,12 +52,21 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
 	@Override
 	public Node visitClassdec(ClassdecContext ctx) {
-		// Si devono ricavare il nome della classe, la lista degli attributi e la lista dei metodi
+		// Si devono ricavare il nome della classe, eventuali classi genitore,
+		// la lista degli attributi e la lista dei metodi
 		
 		ClassdecNode res;
 		
         // res = new ClassdecNode(ctx.ID().toString(),classAttributes);
-		res = new ClassdecNode(ctx.ID().toString(),ctx.vardec(),ctx.fun());
+		
+		String className = ctx.ID(0).toString();
+		String classParent = null;
+		if(ctx.ID().size() > 1)
+			//System.out.println("Class "+className+" implements: "+ctx.ID(1));
+		    classParent = ctx.ID(1).toString();
+		
+		
+		res = new ClassdecNode(className,classParent,ctx.vardec(),ctx.fun());
 		
 		return res;
 	}

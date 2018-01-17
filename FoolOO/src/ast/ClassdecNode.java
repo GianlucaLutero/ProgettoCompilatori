@@ -11,13 +11,15 @@ import util.SemanticError;
 public class ClassdecNode implements Node {
 	
 	String className;
+	String parent;
 //	ArrayList<Node> classAttr;
 	List<VardecContext> classAttr;
 	List<FunContext> methodList;
 	
-	public  ClassdecNode(String cName,List<VardecContext> list,List<FunContext> m) {
+	public  ClassdecNode(String cName,String pName,List<VardecContext> list,List<FunContext> m) {
 		
 		className = cName;
+		parent = pName;
 		classAttr = list;
 		methodList = m;
 	
@@ -27,6 +29,9 @@ public class ClassdecNode implements Node {
 	public String toPrint(String indent) {
 		// TODO Auto-generated method stub
 		String classAst = indent + "Class " + className+"\n";
+		
+		if(parent != null)
+			classAst += indent + "imlements "+ parent+"\n";
 		
 		for(VardecContext n: classAttr) {
 			classAst += indent + "  "+n.type().getText() + " " +n.ID().getText()+"\n";

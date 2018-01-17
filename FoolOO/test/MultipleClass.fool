@@ -15,8 +15,8 @@
  class topolino(bool k){
  
    int bello()
-      let int z =0; in
-        z + 1;
+      let int z =0;
+       in  z + 1;
  };
  
  let int x=0; in 3 + 3;

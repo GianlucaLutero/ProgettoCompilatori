@@ -1,0 +1,19 @@
+/*
+ Dichiarazione di una classe B che estende la classe A
+*/
+class A(int l){
+   
+   int f()
+     let int s = 0; 
+       in s + 1;
+
+}
+
+class B implements A (bool q){
+  int g()
+   let int y = 9;
+    in y - 9;
+}
+;
+
+let int c = 0; in 1 + 1;
