@@ -48,6 +48,8 @@ public class ClassdecNode implements Node {
 	@Override
 	public Node typeCheck() {
 		// TODO Auto-generated method stub
+		// controllo che il tipo degli attributi dichiarati
+		// e dei metodi siano corretti
 		return null;
 	}
 
@@ -62,6 +64,7 @@ public class ClassdecNode implements Node {
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
+		
 		return null;
 	}
 
