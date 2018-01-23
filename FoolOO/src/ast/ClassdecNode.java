@@ -13,10 +13,10 @@ public class ClassdecNode implements Node {
 	String className;
 	String parent;
 //	ArrayList<Node> classAttr;
-	List<VardecContext> classAttr;
-	List<FunContext> methodList;
+	ArrayList<Node> classAttr;
+	ArrayList<Node> methodList;
 	
-	public  ClassdecNode(String cName,String pName,List<VardecContext> list,List<FunContext> m) {
+	public  ClassdecNode(String cName,String pName,ArrayList<Node> list,ArrayList<Node> m) {
 		
 		className = cName;
 		parent = pName;
@@ -33,12 +33,14 @@ public class ClassdecNode implements Node {
 		if(parent != null)
 			classAst += indent + "imlements "+ parent+"\n";
 		
-		for(VardecContext n: classAttr) {
-			classAst += indent + "  "+n.type().getText() + " " +n.ID().getText()+"\n";
+		
+		
+		for(Node n: classAttr) {
+			classAst += indent + "  "+n+"\n";
 		}
 		
-		for(FunContext fc: methodList) {
-			classAst += indent + "  "+ fc.ID().getText()+"\n";
+		for(Node fc: methodList) {
+			classAst += indent + "  "+ fc+"\n";
 		}
 		
 		
@@ -50,6 +52,7 @@ public class ClassdecNode implements Node {
 		// TODO Auto-generated method stub
 		// controllo che il tipo degli attributi dichiarati
 		// e dei metodi siano corretti
+		
 		return null;
 	}
 

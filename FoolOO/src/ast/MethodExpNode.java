@@ -8,8 +8,12 @@ import util.SemanticError;
 public class MethodExpNode implements Node {
 	
 	String id;
+	// Dall'id del caller ricavo il puntatore this
+	String caller;
 	
-	public MethodExpNode(String i) {
+	
+	public MethodExpNode(String c, String i) {
+		caller = c;
 		id = i;
 	}
 
@@ -17,7 +21,7 @@ public class MethodExpNode implements Node {
 	public String toPrint(String indent) {
 		String methodxp = "";
 		
-		methodxp = indent + "Call method " + id; 
+		methodxp = indent + caller + " calls method " + id; 
 		
 		return methodxp;
 	}

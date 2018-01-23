@@ -39,7 +39,11 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		// classe, da fare nel checksemantics
 		// si deve anche passare l'oggetto che esegue la chiamata
 		
-		return new MethodExpNode(ctx.getText());
+		String caller = ctx.ID(0).getText();
+	    String methodID = ctx.ID(1).getText();
+	    
+		
+		return new MethodExpNode(caller, methodID);
 	}
 	
 	@Override
@@ -61,12 +65,21 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 		String className = ctx.ID(0).toString();
 		String classParent = null;
+		ArrayList<Node> attr = new ArrayList<Node>();
+		ArrayList<Node> meth = new ArrayList<Node>();
+		
 		if(ctx.ID().size() > 1)
 			//System.out.println("Class "+className+" implements: "+ctx.ID(1));
 		    classParent = ctx.ID(1).toString();
 		
+		for(VardecContext vc: ctx.vardec()) {
+			attr.add(visit(vc));
+		}
 		
-		res = new ClassdecNode(className,classParent,ctx.vardec(),ctx.fun());
+		for(FunContext fc: ctx.fun()) {
+			meth.add(visit(fc));
+		}
+		res = new ClassdecNode(className,classParent,attr,meth);
 		
 		return res;
 	}
