@@ -13,10 +13,10 @@ public class ClassdecNode implements Node {
 	String className;
 	String parent;
 //	ArrayList<Node> classAttr;
-	ArrayList<Node> classAttr;
-	ArrayList<Node> methodList;
+	List<VardecContext> classAttr;
+	List<FunContext> methodList;
 	
-	public  ClassdecNode(String cName,String pName,ArrayList<Node> list,ArrayList<Node> m) {
+	public  ClassdecNode(String cName,String pName,List<VardecContext> list,List<FunContext> m) {
 		
 		className = cName;
 		parent = pName;
@@ -33,14 +33,15 @@ public class ClassdecNode implements Node {
 		if(parent != null)
 			classAst += indent + "imlements "+ parent+"\n";
 		
-		
-		
-		for(Node n: classAttr) {
-			classAst += indent + "  "+n+"\n";
+			
+		for(VardecContext n: classAttr) {
+			classAst += indent + "  "+n.type().getText()+" "+n.ID().getText()+"\n";
+			
 		}
-		
-		for(Node fc: methodList) {
-			classAst += indent + "  "+ fc+"\n";
+	
+		for(FunContext fc: methodList) {
+			classAst += indent + "  "+ fc.ID().getText()+"\n";
+			
 		}
 		
 		
