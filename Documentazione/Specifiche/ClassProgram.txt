@@ -1,0 +1,27 @@
+TYPE CHECKING
+
+     G[ClassDecList] |- Exp : T
+-----------------------------------
+     G  |- ClassDecList Exp : T
+
+
+
+
+
+CODE GENERATION
+
+code_generation(ClassDecList Exp) := 
+
+         code_generation(ClassDecList)
+         code_generation(Exp)
+
+
+
+
+
+SEMANTIC CHECKING
+
+check_semantics(ClassDecList Exp) :=
+
+         check_semantics(ClassDecList)
+         check_semantics(Exp)

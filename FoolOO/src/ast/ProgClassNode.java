@@ -57,7 +57,7 @@ public class ProgClassNode implements Node{
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
-		// Controllo prima la semintica delle dichiarazioni delle classi
+		// Controllo prima la semantica delle dichiarazioni delle classi
 		// e poi per l'espressione 
 		return exp.checkSemantics(env);
 	}

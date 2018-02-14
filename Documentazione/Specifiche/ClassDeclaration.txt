@@ -1,0 +1,28 @@
+TYPE CHECKING
+
+  G |-  Attr1 : A1  ... G |- AttrN : An       G |- Method1 : M1 ... G |- MethodN : Mn     
+-----------------------------------------------------------------------------------------
+     G  |- Class T(Attr1: A1,...,AttrN : An) { Method1: M1,..., MethodN : Mn }: T
+
+
+
+
+
+CODE GENERATION
+
+code_generation( Class T(AttributeList) { MethodList } ) := 
+         
+         code_generation(MethodList)
+
+
+
+
+
+SEMANTIC CHEC)KING
+
+check_semantics( Class T(AttrList){MethodList} ) :=
+
+         check_semantics(AttrList)
+         check_semantics(MethodList)
+
+         addVTableEntry(T,AttrList,MethodList)

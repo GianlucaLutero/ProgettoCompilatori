@@ -1,0 +1,36 @@
+TYPE CHECKING
+
+         G[ AttrList ]  |-  exp : T 
+------------------------------------------------
+     G  |- T MethodName(ParamList) exp : T
+
+
+
+
+
+CODE GENERATION
+
+code_generation( T MethodName(ParamList) exp ) := 
+         
+         MethodName_entry:
+
+              move $fp $sp
+              push $ra
+
+              code_generation(exp)
+
+              $ra <-- top
+              addi $sp $sp lenght(ParamList)*4 + 4
+              $fp <-- top
+              pop
+              jr $ra
+
+
+
+
+
+SEMANTIC CHECKING
+
+check_semantics( T MethodName(ParamList) exp ) :=
+         DA FINIRE
+         check_semantics(exp)
