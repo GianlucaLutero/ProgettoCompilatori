@@ -13,16 +13,20 @@ public class ClassdecNode implements Node {
 	String className;
 	String parent;
 //	ArrayList<Node> classAttr;
-	List<VardecContext> classAttr;
-	List<FunContext> methodList;
+	ArrayList<Node> classAttr = new ArrayList<>();
+	ArrayList<Node> methodList;
 	
-	public  ClassdecNode(String cName,String pName,List<VardecContext> list,List<FunContext> m) {
+	public  ClassdecNode(String cName,String pName,ArrayList<Node> m) {
 		
 		className = cName;
 		parent = pName;
-		classAttr = list;
+		//classAttr = list;
 		methodList = m;
 	
+	}
+	
+	public void addAttr(Node p) {
+		classAttr.add(p);
 	}
 
 	@Override
@@ -31,19 +35,19 @@ public class ClassdecNode implements Node {
 		String classAst = indent + "Class " + className+"\n";
 		
 		if(parent != null)
-			classAst += indent + "imlements "+ parent+"\n";
+			classAst += indent + "implements "+ parent+"\n";
 		
-			
-		for(VardecContext n: classAttr) {
-			classAst += indent + "  "+n.type().getText()+" "+n.ID().getText()+"\n";
-			
+		
+		for(Node n: classAttr) {
+		//	classAst += indent + "  "+n.type().getText()+" "+n.ID().getText()+"\n";
+	    	classAst += n.toPrint(indent + " ");
 		}
 	
-		for(FunContext fc: methodList) {
-			classAst += indent + "  "+ fc.ID().getText()+"\n";
+		for(Node fc: methodList) {
+			//classAst += indent + "  "+ fc.ID().getText()+"\n";
+	//		classAst += fc.toPrint(indent + " ");
 			
 		}
-		
 		
 		return classAst;
 	}
@@ -61,6 +65,9 @@ public class ClassdecNode implements Node {
 	public String codeGeneration() {
 		// TODO Auto-generated method stub
 		// genero il codice per i metodi
+		String codeClass = "";
+		
+		
 		return null;
 	}
 

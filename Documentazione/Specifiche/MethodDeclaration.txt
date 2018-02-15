@@ -1,8 +1,8 @@
 TYPE CHECKING
 
-         G[ AttrList ]  |-  exp : T 
-------------------------------------------------
-     G  |- T MethodName(ParamList) exp : T
+                            G[ AttrList ]  |-  exp : T 
+----------------------------------------------------------------------------------
+     G  |- T MethodName(Par1: p1, ... ,ParN : pn) exp : p1 x ... x pn --> T
 
 
 

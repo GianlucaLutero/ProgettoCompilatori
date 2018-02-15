@@ -65,12 +65,22 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 		String className = ctx.ID(0).toString();
 		String classParent = null;
+		ArrayList<Node> mList = new ArrayList<Node>();
 		
 		if(ctx.ID().size() > 1)
 			//System.out.println("Class "+className+" implements: "+ctx.ID(1));
 		    classParent = ctx.ID(1).toString();
 		
-		res = new ClassdecNode(className,classParent,ctx.vardec(),ctx.fun());
+		for(FunContext f : ctx.fun())
+			mList.add(visit(f));
+		
+		System.out.println("Number of Methods: "+ mList.size());
+		
+		res = new ClassdecNode(className,classParent,mList);
+		
+		for(VardecContext v : ctx.vardec())
+			res.addAttr(new ParNode(v.ID().getText(), visit(v.type())) );
+		
 		
 		return res;
 	}

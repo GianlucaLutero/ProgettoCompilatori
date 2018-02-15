@@ -23,7 +23,7 @@ public class ProgClassNode implements Node{
         for (Node dec:declist)
             declstr+=dec.toPrint(indent +"  ");
         
-        return indent+"ProgClassNode\n" + declstr + exp.toPrint(indent+"  ") ;
+        return "ProgClassNode\n" + declstr + exp.toPrint(indent+"  ") ;
         
 	}
 
