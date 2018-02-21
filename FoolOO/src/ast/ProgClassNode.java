@@ -46,6 +46,7 @@ public class ProgClassNode implements Node{
 		// Alla fine il programma cancella il contenuto dello heap
 		//ObjectHandler.active = true;
 		String res = "";
+		FOOLlib.reset();
 		
 		for(Node n:declist) {
 			res += n.codeGeneration();
@@ -78,7 +79,7 @@ public class ProgClassNode implements Node{
 		    }	
 	    }
 	    
-	    
+	    // Controllo la semantica del corpo del programma
 	    se.addAll(exp.checkSemantics(env));
 	    	    
 		return se;
