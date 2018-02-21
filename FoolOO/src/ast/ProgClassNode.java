@@ -44,7 +44,7 @@ public class ProgClassNode implements Node{
 		// per l'espressione
 		// Attivo il supporto a run time degli oggetti
 		// Alla fine il programma cancella il contenuto dello heap
-		//ObjectHandler.active = true;
+		// ObjectHandler.active = true;
 		String res = "";
 		FOOLlib.reset();
 		
@@ -66,6 +66,7 @@ public class ProgClassNode implements Node{
 	    HashMap<String,STentry> hm = new HashMap<String,STentry> ();
 	    env.symTable.add(hm);
 	    env.nestingLevel ++;
+	    ObjectHandler.resetHandler();
 	    // Dichiaro l'array degli errori semantici
 	    ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 	    

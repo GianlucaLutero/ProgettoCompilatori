@@ -15,7 +15,9 @@ public class ClassdecNode implements Node {
 	String parent;
 //	ArrayList<Node> classAttr;
 	ArrayList<Node> classAttr = new ArrayList<>();
-	ArrayList<Node> methodList;
+	
+    // Possibile modifica: ArrayList<HashMap<Id,Node>> 
+ 	ArrayList<Node> methodList;
 	
 	public  ClassdecNode(String cName,String pName,ArrayList<Node> m) {
 		
@@ -68,7 +70,6 @@ public class ClassdecNode implements Node {
 		String codeClass = "";
 		
 		for(Node fun: methodList) {
-			
 			codeClass += fun.codeGeneration();
 		}
 		
@@ -80,7 +81,10 @@ public class ClassdecNode implements Node {
 		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
-	
+	    
+		// Aggiungo la classe all'object handler
+		ObjectHandler.addClass(className, parent);
+		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));
 		}
