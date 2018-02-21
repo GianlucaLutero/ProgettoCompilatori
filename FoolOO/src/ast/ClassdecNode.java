@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import parser.FOOLParser.FunContext;
@@ -32,20 +33,19 @@ public class ClassdecNode implements Node {
 	@Override
 	public String toPrint(String indent) {
 		// TODO Auto-generated method stub
-		String classAst = indent + "Class " + className+"\n";
+		String classAst = indent + "Class " + className+" ";
 		
 		if(parent != null)
-			classAst += indent + "implements "+ parent+"\n";
+			classAst += indent + "implements "+ parent;
 		
+		classAst += "\n";
 		
 		for(Node n: classAttr) {
-		//	classAst += indent + "  "+n.type().getText()+" "+n.ID().getText()+"\n";
 	    	classAst += n.toPrint(indent + " ");
 		}
 	
 		for(Node fc: methodList) {
-			//classAst += indent + "  "+ fc.ID().getText()+"\n";
-	//		classAst += fc.toPrint(indent + " ");
+			classAst += fc.toPrint(indent + " ");
 			
 		}
 		
@@ -67,16 +67,25 @@ public class ClassdecNode implements Node {
 		// genero il codice per i metodi
 		String codeClass = "";
 		
+		for(Node fun: methodList) {
+			
+			codeClass += fun.codeGeneration();
+		}
 		
-		return null;
+		return codeClass;
 	}
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
+		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
+	
+		for(Node m: methodList) {
+			se.addAll(m.checkSemantics(env));
+		}
 		
-		return null;
+		return se;
 	}
 
 }

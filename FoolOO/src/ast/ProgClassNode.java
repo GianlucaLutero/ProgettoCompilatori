@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lib.FOOLlib;
 import util.Environment;
@@ -50,16 +51,37 @@ public class ProgClassNode implements Node{
 			res += n.codeGeneration();
 		}
 		
-		return  exp.codeGeneration() +
-		        "halt\n";
+		return  res +
+				exp.codeGeneration() +
+		        "halt\n"+
+				FOOLlib.getCode();
 	}
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
-		// TODO Auto-generated method stub
 		// Controllo prima la semantica delle dichiarazioni delle classi
 		// e poi per l'espressione 
-		return exp.checkSemantics(env);
+		
+	    HashMap<String,STentry> hm = new HashMap<String,STentry> ();
+	    env.symTable.add(hm);
+	    env.nestingLevel ++;
+	    // Dichiaro l'array degli errori semantici
+	    ArrayList<SemanticError> se = new ArrayList<SemanticError>();
+	    
+	    // Controllo la semantica nella dichiarazione delle classi
+	    if(declist.size() > 0) {
+	    	env.offset = -2;
+	    	
+	    	for(Node c : declist) {
+	    	  	
+		    	se.addAll(c.checkSemantics(env));
+		    }	
+	    }
+	    
+	    
+	    se.addAll(exp.checkSemantics(env));
+	    	    
+		return se;
 	}
 
 }
