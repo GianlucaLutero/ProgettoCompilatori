@@ -1,6 +1,9 @@
 package lib;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import ast.STentry;
 
 /*
  * Classe di supporto per la generazione degli oggetti durante la fase
@@ -17,10 +20,12 @@ public class ClassDescriptor {
 	private int objectSize;
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >
+	private ArrayList<HashMap<String, Integer>> attrList;
 	
 	public ClassDescriptor(String n,String p) {
 		className = n;
 		parent = p;
+		attrList = new ArrayList<HashMap<String, Integer>>();
 	}
 	
 	public String getClassName() {

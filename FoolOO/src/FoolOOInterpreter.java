@@ -127,7 +127,7 @@ public class FoolOOInterpreter {
 					        ExecuteVM vm = new ExecuteVM(parserASM.code);
 					        vm.cpu();
 					        
-					     
+					        
 				        }
 			        }
 					

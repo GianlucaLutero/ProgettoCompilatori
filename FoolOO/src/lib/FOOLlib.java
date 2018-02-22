@@ -31,6 +31,13 @@ public class FOOLlib {
   public static String getCode() { 
     return funCode;
   } 
+  
+  // Resetta lo stato di FOOLlib
+  public static void reset() {
+	  labCount = 0;
+	  funLabCount = 0;
+	  funCode = "";  
+  }
 
 
 }
