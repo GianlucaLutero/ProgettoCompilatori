@@ -74,7 +74,7 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		for(FunContext f : ctx.fun())
 			mList.add(visit(f));
 		
-		System.out.println("Number of Methods: "+ mList.size());
+	//	System.out.println("Number of Methods: "+ mList.size());
 		
 		res = new ClassdecNode(className,classParent,mList);
 		

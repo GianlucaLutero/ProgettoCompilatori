@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.RecognitionException;
 
 import ast.FoolVisitorImpl;
 import ast.Node;
+import lib.FOOLlib;
 import parser.ExecuteVM;
 import parser.FOOLLexer;
 import parser.FOOLParser;
@@ -57,6 +58,7 @@ public class FoolOOInterpreter {
 			
 			
 			if(testList[i].isFile()) {
+				FOOLlib.reset();
 				System.out.println("---------------------------------------------------");
 			    System.out.println("Executing test: " + testList[i].getName());
 			    String programName = testList[i].getName().substring(0, testList[i].getName().length() - 5);

@@ -82,8 +82,21 @@ public class ClassdecNode implements Node {
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 	    
-		// Aggiungo la classe all'object handler
-		ObjectHandler.addClass(className, parent);
+		
+		if(!ObjectHandler.checkClass(className)) {
+		
+			// Aggiungo la classe all'object handler
+			ObjectHandler.addClass(className, parent);
+		
+		}else {
+			
+			se.add(new SemanticError("Class " + className + " already defined"));
+		}
+
+		for(Node p: classAttr) {
+	        ParNode g = (ParNode)p;
+	        ObjectHandler.addAttribute(className, g.getId(), -2);
+		}
 		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));

@@ -16,9 +16,25 @@ public class ObjectHandler {
 	public static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
 	
 	/*
+	 * Viene controllato se la classe NAME e' presente nella lista
+	 * */
+	public static boolean checkClass(String name) {
+		
+		for(ClassDescriptor cd : classList) {
+			if(cd.getClassName() == name)
+				return true;
+		}
+		
+		return false;
+	}
+	
+	/*
 	 * Aggiunge una nuova classe alla classList
 	 * */
 	public static void addClass(String name,String parent) {
+		
+		SemanticError semanticError;
+		
 		ClassDescriptor cd = new ClassDescriptor(name, parent);
 		
 		classList.add(cd);
@@ -31,13 +47,15 @@ public class ObjectHandler {
 		classList = new ArrayList<ClassDescriptor>();
 	}
 	
-	public static ArrayList<SemanticError> addAttribute(String name) {
-		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
+	public static void addAttribute(String name,String id,int offset) {
 		// Se la classe e' derivata aggiungo prima gli attributi della classe genitore 
 		// e poi quelli della classe derivata
 		
 		
-		return se;
+	}
+	
+	public static void addMethod(String name) {
+		
 	}
 
 }
