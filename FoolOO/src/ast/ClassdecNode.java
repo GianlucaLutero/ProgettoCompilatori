@@ -81,22 +81,26 @@ public class ClassdecNode implements Node {
 		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
-	    
+		HashMap<String, Integer> aList = new HashMap<String, Integer>();
+		Integer offset = new Integer(0);
 		
 		if(!ObjectHandler.checkClass(className)) {
-		
+
+			for(Node p: classAttr) {
+		        ParNode g = (ParNode)p;
+		        aList.put(g.getId(), offset);
+			}
+			
+			offset -= 2;
+			
 			// Aggiungo la classe all'object handler
-			ObjectHandler.addClass(className, parent);
+			ObjectHandler.addClass(className, parent , aList);
 		
 		}else {
 			
 			se.add(new SemanticError("Class " + className + " already defined"));
 		}
 
-		for(Node p: classAttr) {
-	        ParNode g = (ParNode)p;
-	        ObjectHandler.addAttribute(className, g.getId(), -2);
-		}
 		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));

@@ -20,12 +20,12 @@ public class ClassDescriptor {
 	private int objectSize;
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >
-	private ArrayList<HashMap<String, Integer>> attrList;
+	private HashMap<String, Integer> attrList;
 	
 	public ClassDescriptor(String n,String p) {
 		className = n;
 		parent = p;
-		attrList = new ArrayList<HashMap<String, Integer>>();
+		attrList = new HashMap<String, Integer>();
 	}
 	
 	public String getClassName() {
@@ -40,4 +40,15 @@ public class ClassDescriptor {
 		return objectSize;
 	}
 	
+	public HashMap<String, Integer> getAttList(){
+		return attrList;
+	}
+	
+	public void setAttrList(HashMap<String, Integer> att) {
+		attrList.putAll(att);
+	}
+	
+	public void setSize(int s) {
+		objectSize = s;
+	}
 }

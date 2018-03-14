@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lib.ClassDescriptor;
 /*
@@ -31,13 +32,48 @@ public class ObjectHandler {
 	/*
 	 * Aggiunge una nuova classe alla classList
 	 * */
-	public static void addClass(String name,String parent) {
+	public static SemanticError addClass(String name,String parent,HashMap<String, Integer> attr) {
 		
-		SemanticError semanticError;
+		SemanticError semanticError = new SemanticError("");
 		
 		ClassDescriptor cd = new ClassDescriptor(name, parent);
 		
+		String tmpPar = parent;
+		
+		int tmpSize = 0;
+		
+		// Aggiungo i parametri al class descriptor
+		if(parent == null) {
+			tmpSize = attr.size();
+			cd.setSize(tmpSize);
+		}else {
+			// Se la nuova classe e` derivata risalgo tutta la catena di derivazione
+			// per calcolare la dimensione effettiva dei nuovi oggetti
+			while(tmpPar != null) {
+	
+				for (ClassDescriptor classDescriptor : classList) {
+					if(classDescriptor.getClassName() == tmpPar) {
+						tmpSize += classDescriptor.getSize();
+						tmpPar = classDescriptor.getParent();
+						
+						break;
+					}
+				}
+				
+			}
+			
+					
+			// Riaggiusto gli offset dei nuovi parametri
+			final int size = tmpSize;
+			attr.replaceAll((key,oldValue) -> oldValue - size);
+		
+			cd.setSize(size);
+		}
+		
+		cd.setAttrList(attr);
 		classList.add(cd);
+		
+		return semanticError;
 	}
 	
 	/*
@@ -47,7 +83,7 @@ public class ObjectHandler {
 		classList = new ArrayList<ClassDescriptor>();
 	}
 	
-	public static void addAttribute(String name,String id,int offset) {
+	public static void addAttribute(String className,String id,int offset) {
 		// Se la classe e' derivata aggiungo prima gli attributi della classe genitore 
 		// e poi quelli della classe derivata
 		
