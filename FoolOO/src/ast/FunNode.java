@@ -123,18 +123,18 @@ public class FunNode implements Node {
 	    
 	    String funl=FOOLlib.freshFunLabel(); 
 	    FOOLlib.putCode(funl+":\n"+
-	            "cfp\n"+ //setta $fp a $sp				
-				"lra\n"+ //inserimento return address
-	    		declCode+ //inserimento dichiarazioni locali
-	    		body.codeGeneration()+
-	    		"srv\n"+ //pop del return value
-	    		popDecl+
-	    		"sra\n"+ // pop del return address
-	    		"pop\n"+ // pop di AL
-	    		popParl+
-	    		"sfp\n"+  // setto $fp a valore del CL
-	    		"lrv\n"+ // risultato della funzione sullo stack
-	    		"lra\n"+"js\n" // salta a $ra
+	            "cfp\n"+ //setta $fp a $sp		 					( move $fp $sp )		
+				"lra\n"+ //inserimento return address				( push $ra )
+	    		declCode+ //inserimento dichiarazioni locali		( push declist )
+	    		body.codeGeneration()+ //							( push body )
+	    		"srv\n"+ //pop del return value						( pop $rv )
+	    		popDecl+ //											( pop declist )
+	    		"sra\n"+ // return address 							( $ra <- TOP )
+	    		"pop\n"+ // pop di AL								( pop $ra )
+	    		popParl+ //											( pop parlist)
+	    		"sfp\n"+  // setto $fp a valore del CL 				( $fp <- TOP )
+	    		"lrv\n"+ // risultato della funzione sullo stack	( push $rv )
+	    		"lra\n"+"js\n" // salta a $ra						( push $ra + js $ra)
 	    		);
 	    
 		return "push "+ funl +"\n";

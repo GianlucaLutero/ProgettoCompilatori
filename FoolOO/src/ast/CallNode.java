@@ -85,15 +85,15 @@ public String toPrint(String s) {  //
 		  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
 	    
-		return "lfp\n"+ //CL
-               parCode+
-               "lfp\n"+getAR+ //setto AL risalendo la catena statica
-               // ora recupero l'indirizzo a cui saltare e lo metto sullo stack
-               "push "+entry.getOffset()+"\n"+ //metto offset sullo stack
-		       "lfp\n"+getAR+ //risalgo la catena statica
-			   "add\n"+ 
-               "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto
-		       "js\n";
+		return "lfp\n"+ //CL														( push $fp )
+               parCode+ //															( push parcode )
+               "lfp\n"+getAR+ //setto AL risalendo la catena statica				( push $fp + ??)
+               // ora recupero l'indirizzo a cui saltare e lo metto sullo stack		
+               "push "+entry.getOffset()+"\n"+ //metto offset sullo stack			
+		       "lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
+			   "add\n"+ 															
+               "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		
+		       "js\n";	//jump to instruction pointed by top of stack and store next instruction in ra
   }
 
     

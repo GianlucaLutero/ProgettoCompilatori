@@ -23,6 +23,7 @@ import parser.FOOLParser.MethodExpContext;
 import parser.FOOLParser.NewExpContext;
 import parser.FOOLParser.SingleExpContext;
 import parser.FOOLParser.TermContext;
+import parser.FOOLParser.ThisExpContext;
 import parser.FOOLParser.TypeContext;
 import parser.FOOLParser.VarExpContext;
 import parser.FOOLParser.VarasmContext;
@@ -53,6 +54,12 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		// e la lista dei parametri con cui inizializzare l'oggetto
 		return new NewExpNode();
 	}
+	
+	@Override
+	public Node visitThisExp(ThisExpContext ctx) {
+		return new ThisExpNode();
+	}
+
 	
 	@Override
 	public Node visitClassdec(ClassdecContext ctx) {
