@@ -1,5 +1,6 @@
-// Generated from FOOL.g4 by ANTLR 4.7
+// Generated from FOOL.g4 by ANTLR 4.4
 package parser;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -17,159 +18,159 @@ public class FOOLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements F
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSingleExp(FOOLParser.SingleExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitClassExp(@NotNull FOOLParser.ClassExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLetInExp(FOOLParser.LetInExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBaseExp(@NotNull FOOLParser.BaseExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitClassExp(FOOLParser.ClassExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIntVal(@NotNull FOOLParser.IntValContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitClassdec(FOOLParser.ClassdecContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLetInExp(@NotNull FOOLParser.LetInExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLet(FOOLParser.LetContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNewExp(@NotNull FOOLParser.NewExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVardec(FOOLParser.VardecContext ctx) { return visitChildren(ctx); }
+	@Override public T visitType(@NotNull FOOLParser.TypeContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVarasm(FOOLParser.VarasmContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBoolVal(@NotNull FOOLParser.BoolValContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFun(FOOLParser.FunContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunExp(@NotNull FOOLParser.FunExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVarAssignment(FOOLParser.VarAssignmentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunDeclaration(@NotNull FOOLParser.FunDeclarationContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunDeclaration(FOOLParser.FunDeclarationContext ctx) { return visitChildren(ctx); }
+	@Override public T visitClassdec(@NotNull FOOLParser.ClassdecContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitType(FOOLParser.TypeContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarExp(@NotNull FOOLParser.VarExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExp(FOOLParser.ExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVardec(@NotNull FOOLParser.VardecContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTerm(FOOLParser.TermContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMethodExp(@NotNull FOOLParser.MethodExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFactor(FOOLParser.FactorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitIfExp(@NotNull FOOLParser.IfExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIntVal(FOOLParser.IntValContext ctx) { return visitChildren(ctx); }
+	@Override public T visitThisExp(@NotNull FOOLParser.ThisExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBoolVal(FOOLParser.BoolValContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLet(@NotNull FOOLParser.LetContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBaseExp(FOOLParser.BaseExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTerm(@NotNull FOOLParser.TermContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIfExp(FOOLParser.IfExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarasm(@NotNull FOOLParser.VarasmContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVarExp(FOOLParser.VarExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExp(@NotNull FOOLParser.ExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitThisExp(FOOLParser.ThisExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFactor(@NotNull FOOLParser.FactorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunExp(FOOLParser.FunExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarAssignment(@NotNull FOOLParser.VarAssignmentContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMethodExp(FOOLParser.MethodExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFun(@NotNull FOOLParser.FunContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNewExp(FOOLParser.NewExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSingleExp(@NotNull FOOLParser.SingleExpContext ctx) { return visitChildren(ctx); }
 }
