@@ -94,6 +94,7 @@ public class ClassdecNode implements Node {
 			offset -= 2;
 			
 			// Aggiungo la classe all'object handler
+		
 			ObjectHandler.addClass(className, parent , aList);
 		
 		}else {

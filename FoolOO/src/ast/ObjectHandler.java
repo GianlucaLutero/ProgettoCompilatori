@@ -46,16 +46,17 @@ public class ObjectHandler {
 		if(parent == null) {
 			tmpSize = attr.size();
 			cd.setSize(tmpSize);
+
+			System.out.println("Class "+ name + " size is " + tmpSize);
 		}else {
 			// Se la nuova classe e` derivata risalgo tutta la catena di derivazione
 			// per calcolare la dimensione effettiva dei nuovi oggetti
 			while(tmpPar != null) {
-	
 				for (ClassDescriptor classDescriptor : classList) {
-					if(classDescriptor.getClassName() == tmpPar) {
+				
+					if(classDescriptor.getClassName().equals(tmpPar)) {
 						tmpSize += classDescriptor.getSize();
 						tmpPar = classDescriptor.getParent();
-						
 						break;
 					}
 				}
@@ -68,7 +69,10 @@ public class ObjectHandler {
 			attr.replaceAll((key,oldValue) -> oldValue - size);
 		
 			cd.setSize(size);
+
+			System.out.println("Class "+ name + " size is " + size);
 		}
+		
 		
 		cd.setAttrList(attr);
 		classList.add(cd);

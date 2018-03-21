@@ -52,12 +52,20 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		// TO DO
 		// Si deve ricavare il nome della classe
 		// e la lista dei parametri con cui inizializzare l'oggetto
-		return new NewExpNode();
+		
+		ArrayList<Node> argument = new ArrayList<>();
+		
+		for(ExpContext c: ctx.exp()) {
+			argument.add(visit(c));
+		}
+		
+		return new NewExpNode(ctx.ID().toString(),argument);
 	}
 	
 	@Override
 	public Node visitThisExp(ThisExpContext ctx) {
-		return new ThisExpNode();
+	    return null;
+	//	return new ThisExpNode();
 	}
 
 	
