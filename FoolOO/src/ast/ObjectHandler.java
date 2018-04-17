@@ -22,7 +22,7 @@ public class ObjectHandler {
 	public static boolean checkClass(String name) {
 		
 		for(ClassDescriptor cd : classList) {
-			if(cd.getClassName() == name)
+			if(cd.getClassName().equals(name) )
 				return true;
 		}
 		
@@ -40,11 +40,11 @@ public class ObjectHandler {
 		
 		String tmpPar = parent;
 		
-		int tmpSize = 0;
+		int tmpSize = attr.size();
 		
 		// Aggiungo i parametri al class descriptor
 		if(parent == null) {
-			tmpSize = attr.size();
+			
 			cd.setSize(tmpSize);
 
 			System.out.println("Class "+ name + " size is " + tmpSize);
@@ -53,7 +53,7 @@ public class ObjectHandler {
 			// per calcolare la dimensione effettiva dei nuovi oggetti
 			while(tmpPar != null) {
 				for (ClassDescriptor classDescriptor : classList) {
-				
+				    // Aggiungere gli attributi della classe da cui si deriva
 					if(classDescriptor.getClassName().equals(tmpPar)) {
 						tmpSize += classDescriptor.getSize();
 						tmpPar = classDescriptor.getParent();
@@ -66,7 +66,7 @@ public class ObjectHandler {
 					
 			// Riaggiusto gli offset dei nuovi parametri
 			final int size = tmpSize;
-			attr.replaceAll((key,oldValue) -> oldValue - size);
+			attr.replaceAll((key,oldValue) -> oldValue + size);
 		
 			cd.setSize(size);
 
@@ -94,7 +94,7 @@ public class ObjectHandler {
 		
 	}
 	
-	public static void addMethod(String name) {
+	public static void addMethod(String className,String mname) {
 		
 	}
 

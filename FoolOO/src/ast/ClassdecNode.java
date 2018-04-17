@@ -78,7 +78,6 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
-		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 		HashMap<String, Integer> aList = new HashMap<String, Integer>();
