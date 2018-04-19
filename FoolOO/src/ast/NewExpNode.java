@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 
+import lib.FOOLlib;
 import util.Environment;
 import util.SemanticError;
 
@@ -32,11 +33,20 @@ public class NewExpNode implements Node {
 
 	@Override
 	public Node typeCheck() {
-		//for(int i = 0; class_istance.)
+		for(int i = 0; i < class_istance.classAttr.size(); i++){
+			Node args = arguments.get(i).typeCheck();
+			Node var_node_type = ((VarNode) class_istance.getClassAttr().get(i)).typeCheck();
+			
+			if (!FOOLlib.isSubtype(args, var_node_type)){
+				System.out.println("Incompatible parameter at position " + i + " during instantiation of class " + object_id);
+			      System.exit(0);
+			}
+              
+		}
 		
-		// TODO Auto-generated method stub
-		return null;
-	}
+		//Prendere dalla classe creata da gian BoolTypeNode il return
+		return null; 
+}
 
 	@Override
 	public String codeGeneration() {

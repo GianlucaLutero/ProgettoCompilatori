@@ -115,5 +115,18 @@ public class ClassdecNode implements Node {
 		
 		return se;
 	}
+	
+
+	public String getClassName() {
+		return className;
+	}
+	
+	public String getParent() {
+		return parent;
+	}
+	
+	public ArrayList<Node> getClassAttr() {
+        return classAttr;
+    }
 
 }
