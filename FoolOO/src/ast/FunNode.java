@@ -28,6 +28,10 @@ public class FunNode implements Node {
 	  return id;
   }
   
+  public void setFunId(String s) {
+	  id = s;
+  }
+  
   @Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 	  

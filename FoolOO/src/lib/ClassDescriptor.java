@@ -16,7 +16,6 @@ public class ClassDescriptor {
 	// Se la classe non usa il comando implements il valore di parent e' NULL
 	private String parent;
 	// Contiene la dimensione degli oggetti della classe
-	// viene usata in caso di ereditarieta'
 	private int objectSize;
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >

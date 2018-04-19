@@ -24,6 +24,10 @@ public class ClassdecNode implements Node {
 		className = cName;
 		parent = pName;
 		//classAttr = list;
+		//Aggiungo il nome della classe al nome del metodo
+		for(Node al : m) {
+			((FunNode)al).setFunId(((FunNode)al).getFunId()+"_"+cName);;
+		}
 		methodList = m;
 	
 	}
@@ -34,7 +38,6 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
 		String classAst = indent + "Class " + className+" ";
 		
 		if(parent != null)
@@ -89,7 +92,7 @@ public class ClassdecNode implements Node {
 			for(Node p: classAttr) {
 		        ParNode g = (ParNode)p;
 		        aList.put(g.getId(), offset);
-		        offset -= 2;    
+		        offset -= 1;    
 			}
 			
 					
@@ -102,14 +105,10 @@ public class ClassdecNode implements Node {
 			se.add(new SemanticError("Class " + className + " already defined"));
 		}
 
-		/*
-		 * Modifica nomi dei metodi aggiungendo alla fine il nome della classe?
-		 */
-		
 		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));
-			mList.add(((FunNode)m).getFunId()+"_"+className);
+			mList.add(((FunNode)m).getFunId());
 		}
 		
 		ObjectHandler.addMethods(className, mList);
