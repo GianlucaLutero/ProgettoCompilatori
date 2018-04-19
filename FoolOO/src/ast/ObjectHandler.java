@@ -66,7 +66,7 @@ public class ObjectHandler {
 					
 			// Riaggiusto gli offset dei nuovi parametri
 			final int size = tmpSize;
-			attr.replaceAll((key,oldValue) -> oldValue + size);
+			attr.replaceAll((key,oldValue) -> oldValue - size);
 		
 			cd.setSize(size);
 
@@ -94,7 +94,13 @@ public class ObjectHandler {
 		
 	}
 	
-	public static void addMethod(String className,String mname) {
+	public static void addMethods(String className,ArrayList<String> mname) {
+		
+		for(ClassDescriptor cd : classList) {
+		   if(cd.getClassName().equals(className)) {
+			   cd.setMethodList(mname);
+		   }
+		}
 		
 	}
 

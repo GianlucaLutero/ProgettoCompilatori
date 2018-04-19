@@ -24,6 +24,10 @@ public class FunNode implements Node {
     body=b;
   }
   
+  public String getFunId() {
+	  return id;
+  }
+  
   @Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 	  
