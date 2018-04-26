@@ -8,9 +8,9 @@ import lib.FOOLlib;
 public class CallNode implements Node {
 
   private String id;
-  private STentry entry; 
-  private ArrayList<Node> parlist; 
-  private int nestinglevel;
+  private STentry entry; // entry point funzione
+  private ArrayList<Node> parlist; // lista parametri
+  private int nestinglevel; 
 
   
   public CallNode (String i, STentry e, ArrayList<Node> p, int nl) {
@@ -41,18 +41,21 @@ public String toPrint(String s) {  //
 		
 		 int j=env.nestingLevel;
 		 STentry tmp=null; 
+		 
+		 // cerco nella symbol table se la funzione è stata dichiarata
 		 while (j>=0 && tmp==null)
 		     tmp=(env.symTable.get(j--)).get(id);
-		 if (tmp==null)
-			 res.add(new SemanticError("Id "+id+" not declared"));
 		 
+		 if (tmp==null)
+			 res.add(new SemanticError("Id "+id+" not declared"));		 
 		 else{
 			 this.entry = tmp;
 			 this.nestinglevel = env.nestingLevel;
-			 
+			 // esegue la checksemantics sugli argomenti della funzione
 			 for(Node arg : parlist)
 				 res.addAll(arg.checkSemantics(env));
 		 }
+		 
 		 return res;
 	}
   
