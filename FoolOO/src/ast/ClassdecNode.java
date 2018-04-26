@@ -15,8 +15,6 @@ public class ClassdecNode implements Node {
 	String parent;
 //	ArrayList<Node> classAttr;
 	ArrayList<Node> classAttr = new ArrayList<>();
-	
-    // Possibile modifica: ArrayList<HashMap<Id,Node>> 
  	ArrayList<Node> methodList;
 	
 	public  ClassdecNode(String cName,String pName,ArrayList<Node> m) {
@@ -59,10 +57,12 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public Node typeCheck() {
-		// TODO Auto-generated method stub
-		// controllo che il tipo degli attributi dichiarati
-		// e dei metodi siano corretti
-		
+	
+		// Controllo il tipo dei metodi
+		for(Node m: methodList) {
+			m.typeCheck();
+		}
+		// new ObjectTypeNode(className)
 		return null;
 	}
 
