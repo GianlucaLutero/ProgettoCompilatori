@@ -44,8 +44,9 @@ public class NewExpNode implements Node {
               
 		}
 		
-		//Prendere dalla classe creata da gian BoolTypeNode il return
-		return null; 
+	ObjectTypeNode ot = new ObjectTypeNode(object_id);
+	
+	return ot;
 }
 
 	@Override
