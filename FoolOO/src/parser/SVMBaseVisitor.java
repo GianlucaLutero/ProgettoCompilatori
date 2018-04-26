@@ -1,9 +1,8 @@
-// Generated from SVM.g4 by ANTLR 4.4
+// Generated from SVM.g4 by ANTLR 4.7
 package parser;
 
 import java.util.HashMap;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -21,5 +20,5 @@ public class SVMBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SV
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAssembly(@NotNull SVMParser.AssemblyContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAssembly(SVMParser.AssemblyContext ctx) { return visitChildren(ctx); }
 }

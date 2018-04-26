@@ -14,14 +14,24 @@ public class FunNode implements Node {
   private ArrayList<Node> declist; 
   private Node body;
   
+  
+  //Test correttezza function_
   public FunNode (String i, Node t) {
-    id=i;
+    id="function_"+i;
     type=t;
   }
   
   public void addDecBody (ArrayList<Node> d, Node b) {
     declist=d;
     body=b;
+  }
+  
+  public String getFunId() {
+	  return id;
+  }
+  
+  public void setFunId(String s) {
+	  id = s;
   }
   
   @Override

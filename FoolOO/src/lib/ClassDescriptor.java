@@ -16,16 +16,18 @@ public class ClassDescriptor {
 	// Se la classe non usa il comando implements il valore di parent e' NULL
 	private String parent;
 	// Contiene la dimensione degli oggetti della classe
-	// viene usata in caso di ereditarieta'
 	private int objectSize;
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >
 	private HashMap<String, Integer> attrList;
 	
+	private ArrayList<String> mList;
+	
 	public ClassDescriptor(String n,String p) {
 		className = n;
 		parent = p;
 		attrList = new HashMap<String, Integer>();
+		mList = new ArrayList<>();
 	}
 	
 	public String getClassName() {
@@ -46,9 +48,20 @@ public class ClassDescriptor {
 	
 	public void setAttrList(HashMap<String, Integer> att) {
 		attrList.putAll(att);
+		
+		//DEBUG Show attr list
+		System.out.println("Attribute list: "+att.toString());
+		
 	}
 	
 	public void setSize(int s) {
 		objectSize = s;
+	}
+	
+	public void setMethodList(ArrayList<String> ml) {
+		mList.addAll(ml);
+		
+		//DEBUG: Show method list
+		System.out.println("Method List: "+ ml.toString());
 	}
 }

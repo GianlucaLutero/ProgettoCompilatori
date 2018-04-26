@@ -92,9 +92,11 @@ public class FoolOOInterpreter {
 				        ArrayList<SemanticError> err = ast.checkSemantics(env);
 				        
 				        if(err.size()>0){
+				        	
 				        	writer.println("You had: " +err.size()+" errors:");
 				        	for(SemanticError e : err)
 				        		writer.println("\t" + e);
+				        	
 				        }else{
 				        
 					        writer.println("Visualizing AST...");

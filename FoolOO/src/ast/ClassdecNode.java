@@ -24,6 +24,10 @@ public class ClassdecNode implements Node {
 		className = cName;
 		parent = pName;
 		//classAttr = list;
+		//Aggiungo il nome della classe al nome del metodo
+		for(Node al : m) {
+			((FunNode)al).setFunId(((FunNode)al).getFunId().substring(9)+"_"+cName);;
+		}
 		methodList = m;
 	
 	}
@@ -34,7 +38,6 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
 		String classAst = indent + "Class " + className+" ";
 		
 		if(parent != null)
@@ -78,10 +81,10 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
-		// TODO Auto-generated method stub
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 		HashMap<String, Integer> aList = new HashMap<String, Integer>();
+		ArrayList<String> mList = new ArrayList<String>();
 		Integer offset = new Integer(0);
 		
 		if(!ObjectHandler.checkClass(className)) {
@@ -89,10 +92,10 @@ public class ClassdecNode implements Node {
 			for(Node p: classAttr) {
 		        ParNode g = (ParNode)p;
 		        aList.put(g.getId(), offset);
+		        offset -= 1;    
 			}
 			
-			offset -= 2;
-			
+					
 			// Aggiungo la classe all'object handler
 		
 			ObjectHandler.addClass(className, parent , aList);
@@ -105,9 +108,25 @@ public class ClassdecNode implements Node {
 		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));
+			mList.add(((FunNode)m).getFunId());
 		}
+		
+		ObjectHandler.addMethods(className, mList);
 		
 		return se;
 	}
+	
+
+	public String getClassName() {
+		return className;
+	}
+	
+	public String getParent() {
+		return parent;
+	}
+	
+	public ArrayList<Node> getClassAttr() {
+        return classAttr;
+    }
 
 }
