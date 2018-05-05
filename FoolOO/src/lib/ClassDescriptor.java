@@ -63,5 +63,13 @@ public class ClassDescriptor {
 		
 		//DEBUG: Show method list
 		System.out.println("Method List: "+ ml.toString());
+		
+		// Per ricavare il nome della classe dal metodo
+		/*
+		for(String s: ml) {
+			String[] ss = s.split("_");
+			System.out.println(ss[ss.length-1]);
+		}
+		*/
 	}
 }
