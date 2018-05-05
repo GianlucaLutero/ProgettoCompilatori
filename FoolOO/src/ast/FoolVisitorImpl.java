@@ -42,9 +42,12 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 		String caller = ctx.ID(0).getText();
 	    String methodID = ctx.ID(1).getText();
+	    ArrayList<Node> args = new ArrayList<>();
 	    
+	    for(ExpContext exp : ctx.exp())
+			args.add(visit(exp));
 		
-		return new MethodExpNode(caller, methodID);
+		return new MethodExpNode(caller, methodID, args);
 	}
 	
 	@Override
