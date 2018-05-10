@@ -46,6 +46,10 @@ public class ClassDescriptor {
 		return attrList;
 	}
 	
+	public ArrayList<String> getMethodList(){
+		return mList;
+	}
+	
 	public void setAttrList(HashMap<String, Integer> att) {
 		attrList.putAll(att);
 		
@@ -72,4 +76,5 @@ public class ClassDescriptor {
 		}
 		*/
 	}
+	
 }

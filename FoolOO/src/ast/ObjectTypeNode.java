@@ -13,6 +13,9 @@ public class ObjectTypeNode  implements Node{
 		 this.type = t;
 	  }
 	  
+	 public String getType(){
+		 return type;
+	 }
 	  public String toPrint(String s) {
 		return s+"ObjectType\n";  
 	  }
