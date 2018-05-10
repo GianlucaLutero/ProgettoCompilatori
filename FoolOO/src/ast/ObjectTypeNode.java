@@ -25,6 +25,10 @@ public class ObjectTypeNode  implements Node{
 	    return null;
 	  }
 	  
+	  public String getType() {
+		  return type;
+	  }
+	  
 	  @Override
 	 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 
@@ -35,6 +39,5 @@ public class ObjectTypeNode  implements Node{
 	  public String codeGeneration() {
 			return "";
 	  }
-
 
 }

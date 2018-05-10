@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 
+import lib.ClassDescriptor;
 import lib.FOOLlib;
 import util.Environment;
 import util.SemanticError;
@@ -51,8 +52,14 @@ public class NewExpNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		int objectSize = arguments.size();
+		
+		return  "lhp\n" +
+				"push " + objectSize + "\n" +
+				"add\n" +
+	            "shp\n"	+
+				"lhp\n";
 	}
 
 	@Override
