@@ -14,7 +14,7 @@ public class ObjectHandler {
 	
 	public static boolean active = false;
 	
-	public static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
+	private static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
 	
 	/*
 	 * Viene controllato se la classe NAME e' presente nella lista
@@ -27,6 +27,15 @@ public class ObjectHandler {
 		}
 		
 		return false;
+	}
+	
+	public static ClassDescriptor getClass(String name) {
+		for(ClassDescriptor c:classList) {
+			if (c.getClassName().equals(name))
+				return c;
+		}
+		
+		return null;
 	}
 	
 	/*
