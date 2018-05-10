@@ -13,7 +13,7 @@ public class ClassdecNode implements Node {
 	
 	String className;
 	String parent;
-//	ArrayList<Node> classAttr;
+
 	ArrayList<Node> classAttr = new ArrayList<>();
  	ArrayList<Node> methodList;
 	
@@ -62,7 +62,7 @@ public class ClassdecNode implements Node {
 			m.typeCheck();
 		}
 		// new ObjectTypeNode(className)
-		return null;
+		return new ObjectTypeNode(className);
 	}
 
 	@Override
