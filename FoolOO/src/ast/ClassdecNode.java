@@ -27,7 +27,6 @@ public class ClassdecNode implements Node {
 			((FunNode)al).setFunId(((FunNode)al).getFunId().substring(9)+"_"+cName);;
 		}
 		methodList = m;
-	
 	}
 	
 	public void addAttr(Node p) {
