@@ -46,7 +46,7 @@ public class NewExpNode implements Node {
 		
 	ObjectTypeNode ot = new ObjectTypeNode(object_id);
 	
-	return ot;
+	return ot;//valore di ritorno
 }
 
 	@Override
