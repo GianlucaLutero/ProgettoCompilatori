@@ -16,9 +16,9 @@ public class FOOLlib {
 	boolean obj = false;
 	
 	// Viene fatto il controllo solo con elementi di tipo ObjectType
-	// Class a <= Class b se :
+	// Class a <: Class b se :
 	//			Class a = Class b
-	//			Esiste Class c. Class a < Class c && Class c <= Class b
+	//			Esiste Class c. Class a <: Class c && Class c <: Class b
 	if(a instanceof ObjectTypeNode && b instanceof ObjectTypeNode) {
 		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType());
 		
@@ -28,8 +28,10 @@ public class FOOLlib {
 				obj = true;
 				break;
 			}
-			else
+			else {
 				c = ObjectHandler.getClass(c.getParent());
+			}
+			
 		}
 	}
 	  

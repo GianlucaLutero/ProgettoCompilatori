@@ -29,6 +29,9 @@ public class ObjectHandler {
 		return false;
 	}
 	
+	/*
+	 * Restituisce il ClassDescriptor per la classe NAME se esite o null altriment
+	 */
 	public static ClassDescriptor getClass(String name) {
 		for(ClassDescriptor c:classList) {
 			if (c.getClassName().equals(name))
@@ -96,6 +99,9 @@ public class ObjectHandler {
 		classList = new ArrayList<ClassDescriptor>();
 	}
 	
+	/*
+	 * Aggiungo gli attributi per la classe className
+	 */
 	public static void addAttribute(String className,String id,int offset) {
 		// Se la classe e' derivata aggiungo prima gli attributi della classe genitore 
 		// e poi quelli della classe derivata
@@ -103,6 +109,9 @@ public class ObjectHandler {
 		
 	}
 	
+	/*
+	 * Aggiungo i metodi alla classe className
+	 */
 	public static void addMethods(String className,ArrayList<String> mname) {
 		
 		for(ClassDescriptor cd : classList) {
