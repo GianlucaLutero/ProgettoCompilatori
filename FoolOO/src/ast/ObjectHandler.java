@@ -30,7 +30,7 @@ public class ObjectHandler {
 	}
 	
 	/*
-	 * Restituisce il ClassDescriptor per la classe NAME se esite o null altriment
+	 * Restituisce il ClassDescriptor per la classe NAME se esite o NULL altrimenti
 	 */
 	public static ClassDescriptor getClass(String name) {
 		for(ClassDescriptor c:classList) {
