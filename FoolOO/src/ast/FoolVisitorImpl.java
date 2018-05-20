@@ -67,8 +67,9 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
 	@Override
 	public Node visitThisExp(ThisExpContext ctx) {
-	    return null;
-	//	return new ThisExpNode();
+		
+	//    return null;
+		return new ThisExpNode();
 	}
 
 	

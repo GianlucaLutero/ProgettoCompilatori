@@ -13,30 +13,35 @@ public class FOOLlib {
   //valuta se il tipo "a" � <= al tipo "b", dove "a" e "b" sono tipi di base: int o bool
   public static boolean isSubtype (Node a, Node b) { 
 	
-	boolean obj = false;
+	boolean objectSubtype = false;
 	
 	// Viene fatto il controllo solo con elementi di tipo ObjectType
-	// Class a <= Class b se :
+	// Class a <: Class b se :
 	//			Class a = Class b
-	//			Esiste Class c. Class a < Class c && Class c <= Class b
+	//			Esiste Class c. Class a <: Class c && Class c <: Class b
+	
 	if(a instanceof ObjectTypeNode && b instanceof ObjectTypeNode) {
+		
 		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType());
 		
+		// Risalgo la catena di ereditarieta' per verificare il subtyping
 		while(c.getParent() != null) {
 			
 			if(c.getParent().equals(((ObjectTypeNode)b).getType())) {
-				obj = true;
+				objectSubtype = true;
 				break;
 			}
-			else
+			else {
 				c = ObjectHandler.getClass(c.getParent());
+			}
+			
 		}
 	}
 	  
 	
     return a.getClass().equals(b.getClass()) ||
     	   ( (a instanceof BoolTypeNode) && (b instanceof IntTypeNode) ) ||
-    	   obj; //
+    	   objectSubtype; //
   } 
   
   public static String freshLabel() { 
