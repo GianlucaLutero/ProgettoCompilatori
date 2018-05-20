@@ -15,6 +15,7 @@ public class MethodExpNode implements Node {
 	private ArrayList<Node> parlist;
 	private STentry methodNode;
 	private STentry objectNode;
+	private int nestinglevel;
 	
 	
 	public MethodExpNode(String c, String i, ArrayList<Node> p) {
@@ -93,12 +94,9 @@ public class MethodExpNode implements Node {
 			ClassDescriptor objClassDescr = null;
 			
 			if(foundClass){
-				for(ClassDescriptor cd : ObjectHandler.classList) {
-					if(cd.getClassName().equals(tipo) ){
-						objClassDescr = cd;
-					}
-				}
+				objClassDescr = ObjectHandler.getClass(tipo);
 				// controllo se la classe ha quel metodo
+				//TO DO: controllare anche nella parent class!!!!
 				ArrayList<String> methodList = objClassDescr.getMethodList();
 				for(String s : methodList){
 					if(s.equals(id)){
@@ -125,7 +123,7 @@ public class MethodExpNode implements Node {
 			for(Node arg : parlist)
 			 res.addAll(arg.checkSemantics(env));
 		}
-		
+		nestinglevel = env.nestingLevel;
 		return res;
 	}
 
@@ -137,6 +135,10 @@ public class MethodExpNode implements Node {
 		String parCode="";
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
+	    
+	    String getAR="";
+		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
+		    	 getAR+="lw\n";
 	    
 		return "";
 	}
