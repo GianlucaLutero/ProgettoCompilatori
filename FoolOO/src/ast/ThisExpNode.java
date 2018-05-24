@@ -13,18 +13,16 @@ public class ThisExpNode implements Node{
 	
 	private STentry entry; // entry point funzione
 
+	
 	@Override
-	public String toPrint(String indent) {
-		// TODO Auto-generated method stub
-		return null;
+	public String toPrint(String s) {
+		 return s+"this\n";
 	}
 
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
-		ArrayList<SemanticError> res = new ArrayList<SemanticError>();
-		
-		
+		ArrayList<SemanticError> res = new ArrayList<SemanticError>();		
 		// TODO Auto-generated method stub
 		return res;
 	}
@@ -40,7 +38,6 @@ public class ThisExpNode implements Node{
 
 	@Override
 	public Node typeCheck() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
