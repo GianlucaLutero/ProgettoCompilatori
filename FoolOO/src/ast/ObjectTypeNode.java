@@ -13,6 +13,9 @@ public class ObjectTypeNode  implements Node{
 		 this.type = t;
 	  }
 	  
+	 public String getType(){
+		 return type;
+	 }
 	  public String toPrint(String s) {
 		return s+"ObjectType\n";  
 	  }
@@ -20,10 +23,6 @@ public class ObjectTypeNode  implements Node{
 	  //non utilizzato
 	  public Node typeCheck() {
 	    return null;
-	  }
-	  
-	  public String getType() {
-		  return type;
 	  }
 	  
 	  @Override

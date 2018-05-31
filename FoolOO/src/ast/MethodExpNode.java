@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 
+import lib.ClassDescriptor;
 import lib.FOOLlib;
 import util.Environment;
 import util.SemanticError;
@@ -14,6 +15,7 @@ public class MethodExpNode implements Node {
 	private ArrayList<Node> parlist;
 	private STentry methodNode;
 	private STentry objectNode;
+	private int nestinglevel;
 	
 	
 	public MethodExpNode(String c, String i, ArrayList<Node> p) {
@@ -38,8 +40,8 @@ public class MethodExpNode implements Node {
 		// controllo del numero dei parametri del metodo
 		// controllo del tipo dei parametri del metodo
 		
-		Node o=null; // impostare il tipo dell'oggetto
-	     if (objectNode.getType() instanceof Node) o=/*(ObjectTypeNode)*/ objectNode.getType(); 
+		ObjectTypeNode o=null; 
+	     if (objectNode.getType() instanceof ObjectTypeNode) o=(ObjectTypeNode) objectNode.getType(); 
 	     else {
 	       System.out.println("Invocation of a non-object "+caller); // da sistemare messaggio errore
 	       System.exit(0);
@@ -72,8 +74,8 @@ public class MethodExpNode implements Node {
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();
 		
 		int j=env.nestingLevel;
-		STentry objCaller=null; 
-		STentry method=null;
+		STentry objCaller= null; 
+		STentry method = null;
 		boolean foundMethod = false;
 		
 		// cerco nella symbol table se l'oggetto è stato dichiarato
@@ -85,16 +87,30 @@ public class MethodExpNode implements Node {
 			 res.add(new SemanticError("Caller "+ caller +" not declared"));		 
 		} else {
 			objectNode = objCaller;
-			 // TO DO: controllo se nella classe è effettivamente presente il metodo richiamato
-			// se trovo il metodo imposto foundMethod a true	
-			// dalla symbol table prendi il tipo dell'oggetto da STentry e ritorna un nodo di tipo ObjectTypeNode
-			// dal quale mi prendo la classe di appartenenza
-			//dall'arraylist di objectHandler prendo il classdescriptor della classe e controllo se contiene il metodo richiamato
-					
+			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
+			String tipo = obj.getType();
+			//verifico se esiste la classe dell'oggetto
+			boolean foundClass = ObjectHandler.checkClass(tipo);
+			ClassDescriptor objClassDescr = null;
+			
+			if(foundClass){
+				objClassDescr = ObjectHandler.getClass(tipo);
+				// controllo se la classe ha quel metodo
+				//TO DO: controllare anche nella parent class!!!!
+				ArrayList<String> methodList = objClassDescr.getMethodList();
+				for(String s : methodList){
+					if(s.equals(id)){
+						foundMethod=true;
+					}
+				}
+			} else {
+				res.add(new SemanticError("Class" + tipo + " not found"));
+			}
+			
 		 }
 		
 		if(!foundMethod){ // se il metodo non esiste
-			res.add(new SemanticError("Method "+ id +" not declared"));
+			res.add(new SemanticError("Method "+ id+" not declared"));
 		} else {
 			
 			j=env.nestingLevel;
@@ -107,19 +123,31 @@ public class MethodExpNode implements Node {
 			for(Node arg : parlist)
 			 res.addAll(arg.checkSemantics(env));
 		}
-		
+		nestinglevel = env.nestingLevel;
 		return res;
 	}
 
 	@Override
 	public String codeGeneration() {
 		
-		String objectCode= "";
+		String objectCode= Integer.toString(objectNode.getOffset());
 		
 		String parCode="";
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
 	    
-		return "";
+	    String getAR="";
+		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
+		    	 getAR+="lw\n";
+	    
+		return 	"lfp\n"+
+				parCode + "\n"+
+				"push " + objectCode + "\n" +
+				"lfp\n"+getAR+
+				"push "+methodNode.getOffset()+"\n"+
+				"lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
+				"add\n"+ 															
+	            "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		
+			    "js\n";	//jump to instruction pointed by top of stack and store next instruction in ra
 	}
 }

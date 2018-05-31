@@ -90,24 +90,32 @@ public class FoolOOInterpreter {
 				        Environment env = new Environment();
 				        
 				        ArrayList<SemanticError> err = ast.checkSemantics(env);
+				        System.out.println("End semantic check");
 				        
 				        if(err.size()>0){
 				        	
 				        	writer.println("You had: " +err.size()+" errors:");
-				        	for(SemanticError e : err)
+				        	for(SemanticError e : err) {
+				        		System.out.println("\t" + e);
 				        		writer.println("\t" + e);
+				        	}
 				        	
+				        	writer.close();
 				        }else{
 				        
 					        writer.println("Visualizing AST...");
 					        writer.println(ast.toPrint(""));
-					
+					        
+					        System.out.println("Start type checking");
 					        Node type = ast.typeCheck(); //type-checking bottom-up 
+					        System.out.println("End type checking");
 					        writer.println(type.toPrint("Type checking ok! Type of the program is: "));
 					        
 					      
 					        // CODE GENERATION  
+					        System.out.println("Start code generation");
 					        String code=ast.codeGeneration(); 
+					        System.out.println("End code generation");
 					        BufferedWriter out = new BufferedWriter(new FileWriter(programName+".asm")); 
 					        out.write(code);
 					        out.close(); 

@@ -30,7 +30,9 @@ public class NewExpNode implements Node {
 
 	@Override
 	public String toPrint(String indent) {
-		return "";
+		
+		String s = indent + " Created var "+object_id + " \n";		
+		return s;
 	}
 
 	@Override
