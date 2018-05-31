@@ -100,6 +100,7 @@ public class FoolOOInterpreter {
 				        		writer.println("\t" + e);
 				        	}
 				        	
+				        	writer.close();
 				        }else{
 				        
 					        writer.println("Visualizing AST...");

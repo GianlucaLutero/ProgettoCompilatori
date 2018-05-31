@@ -110,7 +110,7 @@ public class MethodExpNode implements Node {
 		 }
 		
 		if(!foundMethod){ // se il metodo non esiste
-			res.add(new SemanticError("Method "+ id +" not declared"));
+			res.add(new SemanticError("Method "+ id+" not declared"));
 		} else {
 			
 			j=env.nestingLevel;
