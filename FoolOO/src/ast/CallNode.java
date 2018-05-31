@@ -14,14 +14,14 @@ public class CallNode implements Node {
 
   
   public CallNode (String i, STentry e, ArrayList<Node> p, int nl) {
-    id=i;
+    id="function_"+i;
     entry=e;
     parlist = p;
     nestinglevel=nl;
   }
   
   public CallNode(String text, ArrayList<Node> args) {
-	id=text;
+	id="function_"+text;
     parlist = args;
 }
 
@@ -41,13 +41,13 @@ public String toPrint(String s) {  //
 		
 		 int j=env.nestingLevel;
 		 STentry tmp=null; 
-		 
+		
 		 // cerco nella symbol table se la funzione è stata dichiarata
 		 while (j>=0 && tmp==null)
 		     tmp=(env.symTable.get(j--)).get(id);
 		 
 		 if (tmp==null)
-			 res.add(new SemanticError("Id "+id+" not declared"));		 
+			 res.add(new SemanticError("Id "+id+" not declared in CallNode"));		 
 		 else{
 			 this.entry = tmp;
 			 this.nestinglevel = env.nestingLevel;
@@ -87,6 +87,8 @@ public String toPrint(String s) {  //
 	    String getAR="";
 		  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
+		  
+		 System.out.println(getAR);
 	    
 		return "lfp\n"+ //CL														( push $fp )
                parCode+ //															( push parcode )
