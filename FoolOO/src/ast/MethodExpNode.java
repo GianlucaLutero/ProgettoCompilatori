@@ -130,7 +130,7 @@ public class MethodExpNode implements Node {
 	@Override
 	public String codeGeneration() {
 		
-		String objectCode= "";
+		String objectCode= Integer.toString(objectNode.getOffset());
 		
 		String parCode="";
 	    for (int i=parlist.size()-1; i>=0; i--)
@@ -140,6 +140,14 @@ public class MethodExpNode implements Node {
 		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
 	    
-		return "";
+		return 	"lfp\n"+
+				parCode + "\n"+
+				"push " + objectCode + "\n" +
+				"lfp\n"+getAR+
+				"push "+methodNode.getOffset()+"\n"+
+				"lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
+				"add\n"+ 															
+	            "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		
+			    "js\n";	//jump to instruction pointed by top of stack and store next instruction in ra
 	}
 }
