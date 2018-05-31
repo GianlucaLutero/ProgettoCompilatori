@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lib.ClassDescriptor;
 import lib.FOOLlib;
@@ -64,8 +65,20 @@ public class NewExpNode implements Node {
 
 	@Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		//create result list
+	  	  ArrayList<SemanticError> res = new ArrayList<SemanticError>();
+	  	  
+	  	HashMap<String,STentry> hm = env.symTable.get(env.nestingLevel);
+        STentry entry = new STentry(env.nestingLevel,env.offset--);
+        
+        if ( hm.put(object_id,entry) != null )
+            res.add(new SemanticError("Object id "+object_id+" already declared"));
+        
+        for(Node arg: arguments)
+        	res.addAll(arg.checkSemantics(env));
+        
+		return res;
 	}
 
 }
