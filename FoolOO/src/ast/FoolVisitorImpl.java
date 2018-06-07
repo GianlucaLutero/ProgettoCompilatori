@@ -25,6 +25,7 @@ import parser.FOOLParser.SingleExpContext;
 import parser.FOOLParser.TermContext;
 import parser.FOOLParser.ThisExpContext;
 import parser.FOOLParser.TypeContext;
+import parser.FOOLParser.VarAssignmentContext;
 import parser.FOOLParser.VarExpContext;
 import parser.FOOLParser.VarasmContext;
 import parser.FOOLParser.VardecContext;
@@ -123,8 +124,22 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 		// visita dell'espressione
 		// verifica che funzioni anche con le espressioni let
-		Node exp = visit(ctx.exp());
-
+		Node exp = visit(ctx.exp()); 
+		
+		if(ctx.let() != null) {
+			
+			ArrayList<Node> decl = new ArrayList<Node>();
+			
+			for(DecContext dc : ctx.let().dec()){
+				decl.add( visit(dc) );
+			}
+			
+			exp = new ProgLetInNode(decl, exp);
+		}
+		else
+			exp = visit(ctx.exp());
+		
+		
 		res = new ProgClassNode(classDeclarations,exp);		
 		
 		return res;
@@ -168,14 +183,18 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		
 	}
 	
+	@Override
+	public Node visitVardec(VardecContext ctx) {
+		
+		return visitChildren(ctx);
+	}
 	
 	@Override
 	public Node visitVarasm(VarasmContext ctx) {
 		
 		//declare the result node
-		VarNode result;
+		//VarNode result;
 		
-		//visit the type
 		Node typeNode = visit(ctx.vardec().type());
 		
 		//visit the exp
@@ -220,13 +239,18 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
 	@Override
 	public Node visitType(TypeContext ctx) {
+		
 		if(ctx.getText().equals("int"))
 			return new IntTypeNode();
 		else if(ctx.getText().equals("bool"))
 			return new BoolTypeNode();
+		else 
+			return new ObjectTypeNode(ctx.getText());
+		
+		
 		
 		//this will never happen thanks to the parser
-		return null;
+		//return null;
 
 	}
 	
