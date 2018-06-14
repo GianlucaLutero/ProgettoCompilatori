@@ -6,4 +6,3 @@ class A {
 let A a = new A;
 in
     a.f();
-	print("ciao");

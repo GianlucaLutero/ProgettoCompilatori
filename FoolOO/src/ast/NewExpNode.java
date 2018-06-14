@@ -12,7 +12,7 @@ public class NewExpNode implements Node {
 	
 	private String object_id; // nome dell'oggetto
 	private ArrayList<Node> arguments; // argomenti passati al costruttore
-	private ClassdecNode class_istance; // classe di cui è istanza
+//	private ClassdecNode class_istance; // classe di cui è istanza
 	
 	
 	
@@ -37,6 +37,9 @@ public class NewExpNode implements Node {
 
 	@Override
 	public Node typeCheck() {
+		
+		ClassDescriptor c = ObjectHandler.getClass(object_id);
+		/*
 		for(int i = 0; i < class_istance.classAttr.size(); i++){
 			Node args = arguments.get(i).typeCheck();
 			Node var_node_type = ((VarNode) class_istance.getClassAttr().get(i)).typeCheck();
@@ -47,11 +50,16 @@ public class NewExpNode implements Node {
 			}
               
 		}
+		*/
 		
-	ObjectTypeNode ot = new ObjectTypeNode(object_id);
+		for(Node n:arguments) {
+			n.typeCheck();
+		}
+		
+		ObjectTypeNode ot = new ObjectTypeNode(object_id);
 	
-	return ot;//valore di ritorno
-}
+		return ot;//valore di ritorno
+	}
 
 	@Override
 	public String codeGeneration() {

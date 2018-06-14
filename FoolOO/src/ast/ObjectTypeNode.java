@@ -17,7 +17,7 @@ public class ObjectTypeNode  implements Node{
 		 return type;
 	 }
 	  public String toPrint(String s) {
-		return s+"ObjectType\n";  
+		return s+"ObjectType: " +type+"\n";  
 	  }
 	    
 	  //non utilizzato
