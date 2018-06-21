@@ -83,11 +83,18 @@ public class NewExpNode implements Node {
         STentry entry = new STentry(env.nestingLevel,env.offset--);
         System.out.println("Object "+object_id);
         
-        if ( hm.put(object_id,entry) != null )
-            res.add(new SemanticError("Object id "+object_id+" already declared"));
-        
-        for(Node arg: arguments)
-        	res.addAll(arg.checkSemantics(env));
+        //controllo se la classe dell'oggetto è stata dichiarata
+		boolean foundClass = ObjectHandler.checkClass(object_id);
+		
+		if(foundClass){
+			 if ( hm.put(object_id,entry) != null )
+		            res.add(new SemanticError("Object id "+object_id+" already declared"));
+		        
+		        for(Node arg: arguments)
+		        	res.addAll(arg.checkSemantics(env));
+		} else {
+			res.add(new SemanticError("Class " + object_id + " not found"));
+		}
         
 		return res;
 	}

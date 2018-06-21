@@ -1,0 +1,6 @@
+/*
+Classe non dichiarata
+*/
+
+let Asd nonExistent = new Asd;
+  in print(0);
