@@ -50,6 +50,7 @@ public class MethodExpNode implements Node {
 		ArrowTypeNode m=null;
 	     if (methodNode.getType() instanceof ArrowTypeNode) m=(ArrowTypeNode) methodNode.getType(); 
 	     else {
+	    	 
 	       System.out.println("Invocation of a non-method "+id);
 	       System.exit(0);
 	     }
@@ -93,6 +94,8 @@ public class MethodExpNode implements Node {
 			boolean foundClass = ObjectHandler.checkClass(tipo);
 			ClassDescriptor objClassDescr = null;
 			
+			id = id + "_"+tipo;
+			
 			if(foundClass){
 				objClassDescr = ObjectHandler.getClass(tipo);
 				// controllo se la classe ha quel metodo
@@ -115,7 +118,7 @@ public class MethodExpNode implements Node {
 			
 			j=env.nestingLevel;
 			while (j>=0 && method==null){
-				method=(env.symTable.get(j--)).get(caller);
+				method=(env.symTable.get(j--)).get(id);
 			}
 			methodNode= method;
 			
@@ -135,6 +138,8 @@ public class MethodExpNode implements Node {
 		String parCode="";
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
+	    
+	    System.out.println("Method offset:"+methodNode.getOffset());
 	    
 	    String getAR="";
 		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
