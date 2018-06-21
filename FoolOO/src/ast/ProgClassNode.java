@@ -42,9 +42,9 @@ public class ProgClassNode implements Node{
 	public String codeGeneration() {
 		// Genero prima il codice per le classi e poi
 		// per l'espressione
-		// Attivo il supporto a run time degli oggetti
+		
 		// Alla fine il programma cancella il contenuto dello heap
-		// ObjectHandler.active = true;
+
 		String res = "";
 		
 		for(Node n:declist) {
@@ -52,9 +52,9 @@ public class ProgClassNode implements Node{
 		}
 		
 		return  res +
-				exp.codeGeneration() +
-		        "halt\n"+
-				FOOLlib.getCode();
+				exp.codeGeneration() ;
+//		        "\n"+
+//				FOOLlib.getCode();
 	}
 
 	@Override
