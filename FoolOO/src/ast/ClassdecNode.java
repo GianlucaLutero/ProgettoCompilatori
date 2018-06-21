@@ -105,6 +105,10 @@ public class ClassdecNode implements Node {
 		}
 
 		
+		for(Node a: classAttr) {
+			se.addAll(a.checkSemantics(env));
+		}
+		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));
 			mList.add(((FunNode)m).getFunId());
