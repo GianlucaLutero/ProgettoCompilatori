@@ -139,6 +139,8 @@ public class MethodExpNode implements Node {
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
 	    
+	    System.out.println("Method offset:"+methodNode.getOffset());
+	    
 	    String getAR="";
 		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
