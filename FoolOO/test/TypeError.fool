@@ -1,0 +1,13 @@
+/*
+Errore di tipo:
+*/
+class A
+class B {
+   int get() 2;
+};
+let
+   A a = new B;
+in
+   print(a.get());
+   
+//"errore di tipo"

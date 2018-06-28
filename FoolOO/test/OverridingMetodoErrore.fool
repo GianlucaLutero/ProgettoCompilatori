@@ -1,0 +1,17 @@
+/*
+Overriding del metodo errato (tipo errato):
+*/
+class A {
+    int f(int x) x;
+}
+class B implements A
+class C implements B {
+    bool f(bool x) x;
+};
+
+let
+    C c = new C;
+in
+    print(c.f(false));
+        
+// "errore di tipo"

@@ -1,0 +1,17 @@
+/*
+this con subtyping:
+*/
+class X (int x) {
+    Numero getThis() this;
+    int getX() x;
+}
+class Y implements X (int x) {
+    Numero2 getThis() this;
+};
+let
+    Y num = new Y(12);
+    X num2 = num.getThis();
+in
+    print(num2.getX());
+    
+// "12"

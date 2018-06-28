@@ -1,0 +1,15 @@
+/*
+this:
+*/
+class Numero (int x) {
+    Numero getThis() this;
+    int getX() x;
+};
+
+let
+    Numero num = new Numero(10);
+    Numero num2 = num.getThis();
+in
+    print(num2.getX());
+    
+// "10"

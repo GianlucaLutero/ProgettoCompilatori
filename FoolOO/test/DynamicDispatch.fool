@@ -1,0 +1,27 @@
+/*
+Dynamic Dispatch:
+*/
+
+class Numero(int x) {
+    int getX() x;
+    int getY() x;
+}
+class Numerox implements Numero(int x) {
+    int getY() x + 1;
+}
+class Numeroy implements Numero(int x) {
+    int getX() x + 2;
+    int getY() x + 3;
+}
+class Numeroz implements Numeroy(int x) {
+    int getX() x + 3;
+};
+let
+    Numero num = new Numero(2);
+    Numero numx = new Numerox(2);
+    Numero numy = new Numeroy(2);
+    Numero numz = new Numeroz(2);
+in
+    print(num.getX() + numx.getY() + numy.getX() + numz.getY());
+    
+// "14"
