@@ -1,0 +1,11 @@
+/*
+variabile non dichiarata
+*/
+let
+    int foo(int a)  a;
+    int foo2(int a)
+        foo(ciao);
+in
+    foo2(1);
+    
+// "undeclared variable ciao"
