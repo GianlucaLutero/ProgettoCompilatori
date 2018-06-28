@@ -1,0 +1,17 @@
+/*
+Subtype:
+*/
+
+class A
+class B implements A (A a, A b)
+class X {
+	B get() new B(new A, new B(new A, new A));
+};
+let
+    X x = new X;
+    B ciao() x.get();
+    B b2 = new B(x.get(), ciao());
+in
+    print(10);
+    
+// "10"

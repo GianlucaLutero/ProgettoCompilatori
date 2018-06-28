@@ -1,0 +1,9 @@
+
+class fun {
+	int method() 0;
+};
+
+let
+	fun zero = new fun;
+in
+print(zero.method());
