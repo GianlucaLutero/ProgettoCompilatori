@@ -120,7 +120,7 @@ public class FoolOOInterpreter {
 					        out.write(code);
 					        out.close(); 
 					        writer.println("Code generated! Assembling and running generated code.");
-					        
+
 					        FileInputStream isASM = new FileInputStream(programName+".asm");
 					        CharStream inputASM = CharStreams.fromStream(isASM);
 					        SVMLexer lexerASM = new SVMLexer(inputASM);

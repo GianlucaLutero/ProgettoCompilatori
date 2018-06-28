@@ -23,6 +23,6 @@ let A c = new A(1);
     B d = new B(true);
  in
  print( c.f());
- print( d.f());
+// print( d.f());
 // print( c.g());
 // print( d.g());

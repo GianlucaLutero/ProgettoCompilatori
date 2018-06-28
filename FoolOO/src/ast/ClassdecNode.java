@@ -67,7 +67,6 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		// genero il codice per i metodi
 		String codeClass = "";
 		
