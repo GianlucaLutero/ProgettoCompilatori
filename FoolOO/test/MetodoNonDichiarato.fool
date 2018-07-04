@@ -1,0 +1,10 @@
+/* Metodo non dichiarato */
+
+class Parent(int a) {
+    Child p(Child c) c.f(2);
+  }
+  class Child implements Parent (int a) {
+    Child p(Child c) 2 * x;
+  };
+
+  let int x = 4; Parent o = new Child(x); in o.f(x);
