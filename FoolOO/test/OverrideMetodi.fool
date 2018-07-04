@@ -1,0 +1,18 @@
+/*
+override metodi
+*/
+
+class Padre(int a) {
+  int f(int x) 2 * 2;
+  int o(int y) 2 * y;
+}
+class Figlio implements Padre (int a) {
+   int f(int x) 2 * x;
+   int o(int y) 3 * y;
+};
+
+let int x = 5; 
+	Padre i = new Figlio(x);
+in print(i.f(x));
+
+// "10"

@@ -1,0 +1,14 @@
+/*
+ereditarietà2:
+*/
+class A(int a, int b) {
+  int getA() a;
+  int getB() b;
+}
+class B implements A (int c){
+  int getC() c;
+};
+let B b = new B(2, 3, 4);
+in print(b.getC());
+
+// "4"

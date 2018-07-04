@@ -67,7 +67,6 @@ public class ClassdecNode implements Node {
 
 	@Override
 	public String codeGeneration() {
-		// TODO Auto-generated method stub
 		// genero il codice per i metodi
 		String codeClass = "";
 		
@@ -104,6 +103,10 @@ public class ClassdecNode implements Node {
 			se.add(new SemanticError("Class " + className + " already defined"));
 		}
 
+		
+		for(Node a: classAttr) {
+			se.addAll(a.checkSemantics(env));
+		}
 		
 		for(Node m: methodList) {
 			se.addAll(m.checkSemantics(env));

@@ -78,7 +78,9 @@ public class MethodExpNode implements Node {
 		STentry objCaller= null; 
 		STentry method = null;
 		boolean foundMethod = false;
-		
+		String completeName = "";
+	
+			
 		// cerco nella symbol table se l'oggetto è stato dichiarato
 		while (j>=0 && objCaller==null){
 			objCaller=(env.symTable.get(j--)).get(caller);
@@ -88,22 +90,35 @@ public class MethodExpNode implements Node {
 			 res.add(new SemanticError("Caller "+ caller +" not declared"));		 
 		} else {
 			objectNode = objCaller;
+			//verifico se esiste la classe dell'oggetto
 			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
 			String tipo = obj.getType();
-			//verifico se esiste la classe dell'oggetto
+			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
 			boolean foundClass = ObjectHandler.checkClass(tipo);
-			ClassDescriptor objClassDescr = null;
 			
-			id = id + "_"+tipo;
 			
 			if(foundClass){
-				objClassDescr = ObjectHandler.getClass(tipo);
+	
 				// controllo se la classe ha quel metodo
 				//TO DO: controllare anche nella parent class!!!!
-				ArrayList<String> methodList = objClassDescr.getMethodList();
-				for(String s : methodList){
-					if(s.equals(id)){
-						foundMethod=true;
+				while(objClassDescr != null) { 
+					
+					completeName = id + "_"+tipo;
+					
+					ArrayList<String> methodList = objClassDescr.getMethodList();
+					for(String s : methodList){
+						if(s.equals(completeName)){
+							foundMethod=true;
+						}
+					}
+					
+					if(foundMethod) {
+						id = id +"_"+tipo;
+						break;
+					}else {
+						System.out.println("Search in parent!!");
+						tipo = objClassDescr.getParent();
+						objClassDescr = ObjectHandler.getClass(objClassDescr.getParent());
 					}
 				}
 			} else {
@@ -112,7 +127,7 @@ public class MethodExpNode implements Node {
 			
 		 }
 		
-		if(!foundMethod){ // se il metodo non esiste
+		if(!foundMethod){ // se il metodo non esiste		
 			res.add(new SemanticError("Method "+ id+" not declared"));
 		} else {
 			
@@ -139,7 +154,7 @@ public class MethodExpNode implements Node {
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
 	    
-	    System.out.println("Method offset:"+methodNode.getOffset());
+	    System.out.println("Method offset:"+(methodNode.getOffset()+1));
 	    
 	    String getAR="";
 		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
@@ -149,7 +164,7 @@ public class MethodExpNode implements Node {
 				parCode + "\n"+
 				"push " + objectCode + "\n" +
 				"lfp\n"+getAR+
-				"push "+methodNode.getOffset()+"\n"+
+				"push "+(methodNode.getOffset()+1)+"\n"+
 				"lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
 				"add\n"+ 															
 	            "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		

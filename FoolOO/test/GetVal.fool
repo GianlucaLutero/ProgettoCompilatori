@@ -1,0 +1,12 @@
+/*
+	Definisco un classe con un campo e un metodo get
+*/
+
+class valore(int a){
+
+	int get() a;
+
+};
+
+let valore c = new valore(3); in
+	print(c.get());
