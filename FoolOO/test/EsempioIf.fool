@@ -6,4 +6,4 @@ class A {
   ;
   let A a = if (2 == 1) then { new B } else { new C};
   in print(73) ;
-"73"
+//"73"
