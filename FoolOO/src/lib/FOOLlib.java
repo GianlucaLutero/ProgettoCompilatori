@@ -24,6 +24,9 @@ public class FOOLlib {
 		
 		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType());
 		
+		if(c.getClassName().equals(((ObjectTypeNode)b).getType()))
+			return true;
+		
 		// Risalgo la catena di ereditarieta' per verificare il subtyping
 		while(c.getParent() != null) {
 			
@@ -36,12 +39,13 @@ public class FOOLlib {
 			}
 			
 		}
+		
+		
+		return objectSubtype;
 	}
-	  
 	
     return a.getClass().equals(b.getClass()) ||
-    	   ( (a instanceof BoolTypeNode) && (b instanceof IntTypeNode) ) ||
-    	   objectSubtype; //
+    	   ( (a instanceof BoolTypeNode) && (b instanceof IntTypeNode) ); //
   } 
   
   public static String freshLabel() { 

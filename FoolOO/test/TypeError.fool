@@ -8,6 +8,6 @@ class B {
 let
    A a = new B;
 in
-   print(a.get());
+   print(4);
    
 //"errore di tipo"
