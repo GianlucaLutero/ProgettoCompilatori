@@ -19,6 +19,7 @@ public class FOOLlib {
 	// Class a <: Class b se :
 	//			Class a = Class b
 	//			Esiste Class c. Class a <: Class c && Class c <: Class b
+	//			Esiste Class c. Class a <: Class c && Class b <: Class c
 	
 	if(a instanceof ObjectTypeNode && b instanceof ObjectTypeNode) {
 		
@@ -30,15 +31,27 @@ public class FOOLlib {
 		// Risalgo la catena di ereditarieta' per verificare il subtyping
 		while(c.getParent() != null) {
 			
-			if(c.getParent().equals(((ObjectTypeNode)b).getType())) {
-				objectSubtype = true;
-				break;
+			
+			ClassDescriptor d = ObjectHandler.getClass(((ObjectTypeNode)b).getType());
+			
+			while(d != null) {
+			
+				if(c.getParent().equals(d.getClassName())) {
+					//objectSubtype = true;
+					return true;
+					//break;
+				}
+				
+				d = ObjectHandler.getClass(d.getParent());
 			}
-			else {
-				c = ObjectHandler.getClass(c.getParent());
-			}
+		
+			
+			c = ObjectHandler.getClass(c.getParent());
+			
 			
 		}
+		
+		
 		
 		
 		return objectSubtype;
