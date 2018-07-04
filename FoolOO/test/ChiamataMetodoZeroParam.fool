@@ -1,9 +1,9 @@
 
-class fun {
+class fun1 {
 	int method() 0;
 };
 
 let
-	fun zero = new fun;
+	fun1 zero = new fun1;
 in
 print(zero.method());
