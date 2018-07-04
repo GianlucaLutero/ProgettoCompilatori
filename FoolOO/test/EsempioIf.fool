@@ -1,0 +1,9 @@
+class A {
+    int f() 44;
+  }
+  class B implements A
+  class C implements A
+  ;
+  let A a = if (2 == 1) then { new B } else { new C};
+  in print(73) ;
+"73"
