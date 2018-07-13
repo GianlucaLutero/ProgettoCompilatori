@@ -12,6 +12,6 @@ class C implements B {
 let
     C c = new C;
 in
-    print(c.f(false));
+    print(c.f(true));
         
-// "errore di tipo"
+// "errore di tipo" OK per l'errore...ma con  print(c.f(true)) restituisce -2 ?!?!?

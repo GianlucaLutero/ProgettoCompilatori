@@ -61,6 +61,10 @@ public class ClassdecNode implements Node {
 		for(Node m: methodList) {
 			m.typeCheck();
 		}
+		
+		for (Node a: classAttr){
+			a.typeCheck();
+		}
 		// new ObjectTypeNode(className)
 		return new ObjectTypeNode(className);
 	}

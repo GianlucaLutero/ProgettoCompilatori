@@ -26,3 +26,5 @@ let A c = new A(1);
 // print( d.f());
 // print( c.g());
 // print( d.g());
+
+// OK ma no ovveriding

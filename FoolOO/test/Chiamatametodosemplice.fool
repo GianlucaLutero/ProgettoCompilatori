@@ -1,0 +1,13 @@
+/*
+semplice chiamata metodo
+*/
+
+class A (int x) {
+    int x() x;
+};
+let
+    A a = new A(1);
+in
+    print(a.x());
+    
+// "1"  NO

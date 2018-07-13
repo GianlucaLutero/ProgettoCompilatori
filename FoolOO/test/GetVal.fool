@@ -10,3 +10,5 @@ class valore(int a){
 
 let valore c = new valore(3); in
 	print(c.get());
+	
+// "3" NO

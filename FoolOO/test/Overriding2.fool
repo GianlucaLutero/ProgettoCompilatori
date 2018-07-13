@@ -4,7 +4,7 @@ Overriding:
 
 class A {
    int u() 2;
-   int k() 5;
+   int k() 6;
 }
 class B implements A{
    bool u() true;
@@ -14,4 +14,4 @@ class B implements A{
 let A y = new B;
 in print(y.k() + y.u());
   
-// "7"
+// "7" NO esplode con gli offset

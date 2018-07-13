@@ -24,4 +24,4 @@ let
 in
     print(num.getX() + numx.getY() + numy.getX() + numz.getY());
     
-// "14"
+// "14" NO

@@ -4,7 +4,7 @@
  class pippo(int a,int b){
  
     // Metodo della classe
-    int prova(bool c, int d) // c e d sono i parametri del metodo
+    int prova(int c, int d) // c e d sono i parametri del metodo
  
      // x e' un parametro locale del metodo
      let int x = 0; in  
@@ -19,4 +19,8 @@
        in  z + 1;
  };
  
- let int x=0; in 3 + 3;
+ let  pippo p = new pippo(1,2); 
+ 	  topolino t = new topolino(true); 
+ in print(p.prova(3,5) * t.bello());
+ 
+ // "9" NO esplode con l'offset

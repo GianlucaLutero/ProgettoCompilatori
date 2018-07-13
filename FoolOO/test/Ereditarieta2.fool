@@ -11,4 +11,4 @@ class B implements A (int c){
 let B b = new B(2, 3, 4);
 in print(b.getC());
 
-// "4"
+// "4" NO

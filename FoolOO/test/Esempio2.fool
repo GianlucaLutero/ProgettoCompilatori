@@ -1,2 +1,5 @@
-let int x = 1; bool b = true;
+let int x = 1; 
+bool b = true;
 in print (if (b) then { x+1 } else { x+2 });
+
+// "2" OK
