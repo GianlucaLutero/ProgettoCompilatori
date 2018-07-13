@@ -10,4 +10,4 @@ class B {
 in
    print(4);
    
-//"errore di tipo"
+//"errore di tipo" OK

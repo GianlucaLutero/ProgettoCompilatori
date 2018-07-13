@@ -12,4 +12,4 @@ let
 in
     print(num2.getX());
     
-// "10"
+// "10" NO
