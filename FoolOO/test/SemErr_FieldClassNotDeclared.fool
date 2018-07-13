@@ -1,9 +1,9 @@
 /*
 Class field referring to non-existent Class:
 */
-class Asd (Dh b);
+class Asd (baba b);
 
 let int x = 42;
 in print(x);
 
-// NO non controlla dh 
+// OK

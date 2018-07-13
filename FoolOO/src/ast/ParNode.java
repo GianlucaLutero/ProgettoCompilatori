@@ -25,8 +25,13 @@ public class ParNode implements Node {
   
   @Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
+	  ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 
-	  return new ArrayList<SemanticError>();
+	  if( type instanceof ObjectTypeNode){ 
+		  if( !ObjectHandler.checkClass(((ObjectTypeNode) type).getType() )) 
+				  se.add(new SemanticError("class " + ((ObjectTypeNode) type).getType() + " not declared"));}
+	  
+	  return se;
 	}
   
   public String toPrint(String s) {
