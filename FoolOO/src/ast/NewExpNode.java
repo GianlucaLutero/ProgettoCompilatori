@@ -66,8 +66,17 @@ public class NewExpNode implements Node {
 		
 		int objectSize = arguments.size();
 		
+		String objectValue = "";
+		
+		for(Node arg: arguments) {
+			objectValue += arg.codeGeneration();
+		}
+		
+		System.out.println("Oggetto inizializzato: " + objectValue);
+		
 		return  "lhp\n" +
-				"push " + objectSize + "\n" +
+			//	"push " + objectSize + "\n" +
+				objectValue + "\n" +
 				"add\n" +
 	            "shp\n"	+
 				"lhp\n";

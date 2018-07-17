@@ -12,6 +12,7 @@ class B implements A{
    int k() 6;
 };
 let A y = new B;
-in print(y.k() + y.u());
+in 
+print(y.k() + y.u());
   
 // "7"

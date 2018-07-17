@@ -1,6 +1,7 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import lib.ClassDescriptor;
 import lib.FOOLlib;
@@ -73,7 +74,7 @@ public class MethodExpNode implements Node {
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();
-		
+		HashMap<String, Integer> attributes = null;
 		int j=env.nestingLevel;
 		STentry objCaller= null; 
 		STentry method = null;
@@ -94,6 +95,7 @@ public class MethodExpNode implements Node {
 			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
 			String tipo = obj.getType();
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
+			
 			boolean foundClass = ObjectHandler.checkClass(tipo);
 			
 			
@@ -114,6 +116,7 @@ public class MethodExpNode implements Node {
 					
 					if(foundMethod) {
 						id = id +"_"+tipo;
+						attributes = objClassDescr.getAttList();
 						break;
 					}else {
 						System.out.println("Search in parent!!");
@@ -137,9 +140,13 @@ public class MethodExpNode implements Node {
 			}
 			methodNode= method;
 			
+			// attributes.forEach((key,value) ->parlist.add( new IdNode(key)));
 			// il metodo esiste e quindi controllo la semantica dei parametri del metodo
+			System.out.println("Lista parametri: "+ parlist);
 			for(Node arg : parlist)
-			 res.addAll(arg.checkSemantics(env));
+			res.addAll(arg.checkSemantics(env));
+			
+			
 		}
 		nestinglevel = env.nestingLevel;
 		return res;

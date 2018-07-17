@@ -22,6 +22,7 @@ public class ObjectTypeNode  implements Node{
 	    
 	  //non utilizzato
 	  public Node typeCheck() {
+		  
 	    return null;
 	  }
 	  

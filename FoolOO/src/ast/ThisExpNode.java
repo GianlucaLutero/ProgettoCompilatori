@@ -11,7 +11,7 @@ import util.SemanticError;
 
 public class ThisExpNode implements Node{
 	
-	private STentry entry; // entry point funzione
+	private STentry entry; // entry point oggetto
 
 	
 	@Override
@@ -24,6 +24,8 @@ public class ThisExpNode implements Node{
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();		
 		// TODO Auto-generated method stub
+    	//	entry = new STentry(0,new IntTypeNode(),0);
+		
 		return res;
 	}
 	
@@ -39,6 +41,7 @@ public class ThisExpNode implements Node{
 	@Override
 	public Node typeCheck() {
 		return null;
+		//return entry.getType();
 	}
 
 }
