@@ -15,4 +15,4 @@ let int x = 5;
 	Padre i = new Figlio(x);
 in print(i.f(x));
 
-// "10"
+// "10" NO non fa overriding

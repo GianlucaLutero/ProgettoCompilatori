@@ -8,4 +8,4 @@ let
 in
     foo2(1);
     
-// "undeclared variable ciao"
+// "undeclared variable ciao" OK

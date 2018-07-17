@@ -3,3 +3,5 @@
 * NOTA: Il parser non riconosce una singola espressione come programma da implementare ProgExprNode
 */
 print(3 + 2);
+
+// "5" OK

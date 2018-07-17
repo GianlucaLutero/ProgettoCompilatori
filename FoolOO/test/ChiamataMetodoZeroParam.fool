@@ -7,3 +7,5 @@ let
 	fun1 zero = new fun1;
 in
 print(zero.method());
+
+// "0" OK

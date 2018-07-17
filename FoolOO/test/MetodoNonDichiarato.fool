@@ -4,7 +4,9 @@ class Parent(int a) {
     Child p(Child c) c.f(2);
   }
   class Child implements Parent (int a) {
-    Child p(Child c) 2 * x;
+    Child p(Child c) 2 * a;
   };
 
   let int x = 4; Parent o = new Child(x); in o.f(x);
+  
+// Method f not declared OK ma da sempre il problema sulla a

@@ -6,3 +6,5 @@ class A {
 let A a = new A;
 in
    print( a.f());
+   
+// "8" OK

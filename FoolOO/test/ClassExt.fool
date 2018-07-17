@@ -17,3 +17,5 @@ class B implements A (bool q){
 ;
 
 let int c = 0; in print(1 + 1);
+
+// "2" OK
