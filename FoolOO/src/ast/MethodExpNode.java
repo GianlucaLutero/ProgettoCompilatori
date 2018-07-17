@@ -138,6 +138,9 @@ public class MethodExpNode implements Node {
 			while (j>=0 && method==null){
 				method=(env.symTable.get(j--)).get(id);
 			}
+			
+			//method = (env.symTable.get(0)).get(id);
+			
 			methodNode= method;
 			
 			// attributes.forEach((key,value) ->parlist.add( new IdNode(key)));
@@ -160,20 +163,23 @@ public class MethodExpNode implements Node {
 		String parCode="";
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
-	    
-	    System.out.println("Method offset:"+(methodNode.getOffset()+1));
+	    System.out.println("Object pointer: "+objectCode);
+	    System.out.println("Method offset: "+(methodNode.getOffset()+1));
+	    System.out.println("Parameter list: "+parCode);
 	    
 	    String getAR="";
 		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
-	    
+		  
+	    //System.out.println("AR: "+getAR);
+		  
 		return 	"lfp\n"+
 				parCode + "\n"+
 				"push " + objectCode + "\n" +
-				"lfp\n"+getAR+
+		//		"lfp\n"+getAR+
 				"push "+(methodNode.getOffset()+1)+"\n"+
 				"lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
-				"add\n"+ 															
+				"add\n"+
 	            "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		
 			    "js\n";	//jump to instruction pointed by top of stack and store next instruction in ra
 	}

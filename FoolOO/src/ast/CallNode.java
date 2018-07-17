@@ -88,7 +88,7 @@ public String toPrint(String s) {  //
 		  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 		    	 getAR+="lw\n";
 		  
-		 System.out.println(getAR);
+		//System.out.println("AR: "+getAR);
 	    
 		return "lfp\n"+ //CL														( push $fp )
                parCode+ //															( push parcode )
