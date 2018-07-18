@@ -90,7 +90,7 @@ public class NewExpNode implements Node {
 	  	  
 	  	HashMap<String,STentry> hm = env.symTable.get(env.nestingLevel);
         STentry entry = new STentry(env.nestingLevel,env.offset--);
-        System.out.println("Object "+object_id);
+        // System.out.println("Object "+object_id);
         
         //controllo se la classe dell'oggetto è stata dichiarata
 		boolean foundClass = ObjectHandler.checkClass(object_id);

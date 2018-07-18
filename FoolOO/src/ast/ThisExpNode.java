@@ -24,14 +24,12 @@ public class ThisExpNode implements Node{
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();		
 		// TODO Auto-generated method stub
-    	//	entry = new STentry(0,new IntTypeNode(),0);
-		
 		return res;
 	}
 	
 	@Override
 	public String codeGeneration() {
-		return  "push "+ entry.getOffset() +"\n" + //metto offset sullo stack			
+		return  //"push "+ entry.getOffset() +"\n" + //metto offset sullo stack			
 				"lfp\n"+ //risalgo la catena statica							( push $fp + ?? )
 				"add\n"+															
 				"lw\n"; //carico sullo stack il valore all'indirizzo ottenuto		

@@ -83,6 +83,11 @@ public class MethodExpNode implements Node {
 	
 			
 		// cerco nella symbol table se l'oggetto è stato dichiarato
+		if(caller.equals("this")) {
+		
+			System.out.println("Dio bestia");
+		}
+
 		while (j>=0 && objCaller==null){
 			objCaller=(env.symTable.get(j--)).get(caller);
 		}

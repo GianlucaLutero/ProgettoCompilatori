@@ -41,8 +41,17 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 		// classe, da fare nel checksemantics
 		// si deve anche passare l'oggetto che esegue la chiamata
 		
-		String caller = ctx.ID(0).getText();
-	    String methodID = ctx.ID(1).getText();
+		String caller = "";
+	    String methodID = "";
+	    
+	    if(ctx.THIS() != null) {
+	    	caller = "this";
+	    	methodID = ctx.ID(0).getText();
+	    }else {
+	    	caller = ctx.ID(0).getText();
+	    	methodID = ctx.ID(1).getText();
+	    }
+	    
 	    ArrayList<Node> args = new ArrayList<>();
 	    
 	    for(ExpContext exp : ctx.exp())
