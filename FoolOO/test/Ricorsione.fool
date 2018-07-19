@@ -1,0 +1,10 @@
+// Test ricorsione
+
+let 
+	int f(int x,int a) 
+		let int y = x; in
+			
+			if (x == 1)
+			then{ a+x }
+			else{ f(y-1,a+x)};
+in print(f(4,0));
