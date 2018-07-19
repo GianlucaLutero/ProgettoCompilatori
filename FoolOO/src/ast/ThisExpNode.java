@@ -11,7 +11,7 @@ import util.SemanticError;
 
 public class ThisExpNode implements Node{
 	
-	private STentry entry; // entry point oggetto
+	//private STentry entry; // entry point oggetto
 
 	
 	@Override

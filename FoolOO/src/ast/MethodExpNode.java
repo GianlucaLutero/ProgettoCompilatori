@@ -85,12 +85,21 @@ public class MethodExpNode implements Node {
 		// cerco nella symbol table se l'oggetto è stato dichiarato
 		if(caller.equals("this")) {
 		
-			System.out.println("Dio bestia");
+			System.out.println("this call is of type "+ObjectHandler.lastCall);
+		//	caller = ObjectHandler.lastCall;
+			System.out.println("This is calling "+id);
+			objCaller = new STentry(nestinglevel, new ObjectTypeNode(ObjectHandler.lastCall), -2);
+			
+		}else {
+			
+		//	ObjectHandler.lastCall = caller;
+			while (j>=0 && objCaller==null){
+				objCaller=(env.symTable.get(j--)).get(caller);
+			}
+			
 		}
 
-		while (j>=0 && objCaller==null){
-			objCaller=(env.symTable.get(j--)).get(caller);
-		}
+	
 		
 		if (objCaller==null) { // se l'oggetto chiamante non è stato dichiarato
 			 res.add(new SemanticError("Caller "+ caller +" not declared"));		 
@@ -130,7 +139,7 @@ public class MethodExpNode implements Node {
 					}
 				}
 			} else {
-				res.add(new SemanticError("Class" + tipo + " not found"));
+				res.add(new SemanticError("Class " + tipo + " not found"));
 			}
 			
 		 }

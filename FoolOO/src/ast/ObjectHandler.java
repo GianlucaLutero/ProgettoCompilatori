@@ -16,6 +16,8 @@ public class ObjectHandler {
 	
 	private static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
 	
+	public static String lastCall = "";
+	
 	/*
 	 * Viene controllato se la classe NAME e' presente nella lista
 	 * */
@@ -97,6 +99,7 @@ public class ObjectHandler {
 	 * */
 	public static void resetHandler() {
 		classList = new ArrayList<ClassDescriptor>();
+		lastCall = "";
 	}
 	
 	/*
@@ -112,7 +115,7 @@ public class ObjectHandler {
 	/*
 	 * Aggiungo i metodi alla classe className
 	 */
-	public static void addMethods(String className,ArrayList<String> mname) {
+	public static void addMethods(String className,String mname) {
 		
 		for(ClassDescriptor cd : classList) {
 		   if(cd.getClassName().equals(className)) {

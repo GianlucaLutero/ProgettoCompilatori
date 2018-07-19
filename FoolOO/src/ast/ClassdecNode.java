@@ -86,7 +86,7 @@ public class ClassdecNode implements Node {
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 		HashMap<String, Integer> aList = new HashMap<String, Integer>();
-		ArrayList<String> mList = new ArrayList<String>();
+		String mList = "";
 		Integer offset = new Integer(0);
 		
 		if(!ObjectHandler.checkClass(className)) {
@@ -96,6 +96,8 @@ public class ClassdecNode implements Node {
 		        aList.put(g.getId(), offset);
 		        offset -= 1;    
 			}
+			
+			ObjectHandler.lastCall = className;
 			
 					
 			// Aggiungo la classe all'object handler
@@ -113,11 +115,13 @@ public class ClassdecNode implements Node {
 		}
 		
 		for(Node m: methodList) {
+			mList=(((FunNode)m).getFunId());
+			ObjectHandler.addMethods(className, mList);
 			se.addAll(m.checkSemantics(env));
-			mList.add(((FunNode)m).getFunId());
+			
 		}
 		
-		ObjectHandler.addMethods(className, mList);
+		
 		
 		return se;
 	}

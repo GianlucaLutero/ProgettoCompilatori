@@ -62,11 +62,11 @@ public class ClassDescriptor {
 		objectSize = s;
 	}
 	
-	public void setMethodList(ArrayList<String> ml) {
-		mList.addAll(ml);
+	public void setMethodList(String ml) {
+		mList.add(ml);
 		
 		//DEBUG: Show method list
-		System.out.println("Method List: "+ ml.toString());
+		System.out.println("Method List: "+ mList.toString());
 		
 		// Per ricavare il nome della classe dal metodo
 		/*
