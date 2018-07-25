@@ -29,10 +29,15 @@ public class IdNode implements Node {
 	  STentry tmp=null; 
 	  while (j>=0 && tmp==null)
 		  tmp=(env.symTable.get(j--)).get(id);
-      if (tmp==null)
+      if (tmp==null) {
           res.add(new SemanticError("Id "+id+" not declared"));
-      
-      else{
+          
+          if(!ObjectHandler.lastCall.equals("main")) {
+        	  System.out.println("Sono dentro la classe: "+ ObjectHandler.lastCall);
+        	  System.out.println("Cerco l'id "+id+" tra gli attributi di "+ObjectHandler.lastCall);
+          }
+          
+      }else{
     	  entry = tmp;
     	  nestinglevel = env.nestingLevel;
       }

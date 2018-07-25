@@ -79,6 +79,8 @@ public class ProgClassNode implements Node{
 		    }	
 	    }
 	    
+	    //Test: cambiare nome main
+	    ObjectHandler.lastCall = "main";
 	    // Controllo la semantica del corpo del programma
 	    se.addAll(exp.checkSemantics(env));
 	    	    

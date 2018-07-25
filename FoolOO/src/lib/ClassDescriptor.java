@@ -3,6 +3,7 @@ package lib;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ast.Node;
 import ast.STentry;
 
 /*
@@ -20,6 +21,7 @@ public class ClassDescriptor {
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >
 	private HashMap<String, Integer> attrList;
+	private HashMap<String,	Node> attrTypeList;
 	
 	private ArrayList<String> mList;
 	
@@ -27,6 +29,7 @@ public class ClassDescriptor {
 		className = n;
 		parent = p;
 		attrList = new HashMap<String, Integer>();
+		attrTypeList = new HashMap<String,Node>();
 		mList = new ArrayList<>();
 	}
 	
@@ -46,6 +49,10 @@ public class ClassDescriptor {
 		return attrList;
 	}
 	
+	public HashMap<String, Node> getAttType(){
+		return attrTypeList;
+	}
+	
 	public ArrayList<String> getMethodList(){
 		return mList;
 	}
@@ -56,6 +63,11 @@ public class ClassDescriptor {
 		//DEBUG Show attr list
 		System.out.println("Attribute list: "+att.toString());
 		
+	}
+	
+	public void setAttrTypeList(HashMap<String, Node> attType) {
+		attrTypeList.putAll(attType);
+		System.out.println("Attribute type list"+attrTypeList);
 	}
 	
 	public void setSize(int s) {

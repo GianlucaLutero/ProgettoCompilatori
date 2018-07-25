@@ -86,6 +86,7 @@ public class ClassdecNode implements Node {
 		// salvo il template della classe in ObjectHandler
 		ArrayList<SemanticError> se = new ArrayList<SemanticError>();
 		HashMap<String, Integer> aList = new HashMap<String, Integer>();
+		HashMap<String,Node> aTypeList = new HashMap<String, Node>();
 		String mList = "";
 		Integer offset = new Integer(0);
 		
@@ -93,7 +94,9 @@ public class ClassdecNode implements Node {
 
 			for(Node p: classAttr) {
 		        ParNode g = (ParNode)p;
+		      
 		        aList.put(g.getId(), offset);
+		        aTypeList.put(g.getId(), g.getType());
 		        offset -= 1;    
 			}
 			
@@ -102,7 +105,7 @@ public class ClassdecNode implements Node {
 					
 			// Aggiungo la classe all'object handler
 		
-			ObjectHandler.addClass(className, parent , aList);
+			ObjectHandler.addClass(className, parent , aList,aTypeList);
 		
 		}else {
 			

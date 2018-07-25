@@ -369,6 +369,7 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	public Node visitVarExp(VarExpContext ctx) {
 		
 		//this corresponds to a variable access
+		
 		return new IdNode(ctx.ID().getText());
 
 	}

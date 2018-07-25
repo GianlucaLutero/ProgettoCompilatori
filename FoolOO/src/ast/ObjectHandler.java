@@ -46,7 +46,7 @@ public class ObjectHandler {
 	/*
 	 * Aggiunge una nuova classe alla classList
 	 * */
-	public static SemanticError addClass(String name,String parent,HashMap<String, Integer> attr) {
+	public static SemanticError addClass(String name,String parent,HashMap<String, Integer> attr,HashMap<String,Node> attrType) {
 		
 		SemanticError semanticError = new SemanticError("");
 		
@@ -89,6 +89,7 @@ public class ObjectHandler {
 		
 		
 		cd.setAttrList(attr);
+		cd.setAttrTypeList(attrType);
 		classList.add(cd);
 		
 		return semanticError;
