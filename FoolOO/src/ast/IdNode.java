@@ -1,7 +1,10 @@
 package ast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 
+import lib.ClassDescriptor;
 import util.Environment;
 import util.SemanticError;
 
@@ -30,11 +33,36 @@ public class IdNode implements Node {
 	  while (j>=0 && tmp==null)
 		  tmp=(env.symTable.get(j--)).get(id);
       if (tmp==null) {
-          res.add(new SemanticError("Id "+id+" not declared"));
           
           if(!ObjectHandler.lastCall.equals("main")) {
         	  System.out.println("Sono dentro la classe: "+ ObjectHandler.lastCall);
         	  System.out.println("Cerco l'id "+id+" tra gli attributi di "+ObjectHandler.lastCall);
+        	  
+        	  ClassDescriptor c = ObjectHandler.getClass(ObjectHandler.lastCall);
+        	  HashMap<String, Integer> attr = c.getAttList();
+        	  HashMap<String, Node> attrType = c.getAttType();
+        	  int offset;
+        	  Node aType;
+        	  
+        	  if(attr.get(id) != null) {
+        		
+        		  offset = attr.get(id);
+        		  aType = attrType.get(id);
+        		
+        		  System.out.println("Attributo "+ id + " trovato");
+        		  
+        		  entry = new STentry(env.nestingLevel, aType, offset);
+        		  nestinglevel = env.nestingLevel;
+        		  
+        	  }else{
+        		  
+        		   res.add(new SemanticError("Id "+id+" not declared")); 		  
+        	  
+        	  }
+        	  
+        	  
+          }else {
+        	  res.add(new SemanticError("Id "+id+" not declared"));
           }
           
       }else{
@@ -55,11 +83,26 @@ public class IdNode implements Node {
   
   public String codeGeneration() {
       String getAR="";
+      String sh = "";
+      String ad = "";
+      System.out.println("Offset della variabile:" + entry.getOffset());
+      if(ObjectHandler.lastCall.equals("main")) {
+    	
+    	//  sh = "push "+entry.getOffset()+"\n"+"lfp\n";
+    	  ad = "add\n";
+    	  
+      }else {
+    	
+    	  sh = new ThisExpNode().codeGeneration();
+    	  ad = "sub\n";
+    	  
+      }
+      
 	  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 	    	 getAR+="lw\n";
 	    return "push "+entry.getOffset()+"\n"+ //metto offset sullo stack
-		       "lfp\n"+getAR+ //risalgo la catena statica
-			   "add\n"+ 
+		       sh+getAR+ //risalgo la catena statica
+			   ad+ 
                "lw\n"; //carico sullo stack il valore all'indirizzo ottenuto
 
   }

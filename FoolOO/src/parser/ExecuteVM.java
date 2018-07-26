@@ -54,6 +54,7 @@ public class ExecuteVM {
           case SVMParser.STOREW : //
             address = pop();
             memory[address] = pop();    
+            System.out.println("Salvato "+memory[address] + " all'indirizzo " + address);
             break;
           case SVMParser.LOADW : //
             push(memory[pop()]);

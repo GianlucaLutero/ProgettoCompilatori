@@ -2,6 +2,7 @@ package ast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import lib.ClassDescriptor;
 import lib.FOOLlib;
@@ -65,19 +66,30 @@ public class NewExpNode implements Node {
 	public String codeGeneration() {
 		
 		int objectSize = arguments.size();
-		
+		HashMap<String, Integer> argOffset = ObjectHandler.getClass(object_id).getAttList();
 		String objectValue = "";
+		String parent = ObjectHandler.getClass(object_id).getParent();
 		
+		while(parent != null) {
+			argOffset.putAll(ObjectHandler.getClass(parent).getAttList());
+			parent = ObjectHandler.getClass(parent).getParent();
+		}
+		
+		Object[] key =  argOffset.keySet().toArray();
+
+		int i = 0;
+		System.out.println("Numero argomenti: "+key.length);
 		for(Node arg: arguments) {
-			objectValue += arg.codeGeneration();
+			objectValue += arg.codeGeneration()+"lhp\n push "+argOffset.get(key[i])+"\n"+"sub\n" +"sw\n";
+			++i;
 		}
 		
 		System.out.println("Oggetto inizializzato: " + objectValue);
 		
 		return  "lhp\n" +
 			//	"push " + objectSize + "\n" +
-				objectValue + "\n" +
-				"add\n" +
+				objectValue +
+				//"add\n" +
 	            "shp\n"	+
 				"lhp\n";
 	}

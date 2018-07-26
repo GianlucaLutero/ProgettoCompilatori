@@ -24,6 +24,7 @@ public class ThisExpNode implements Node{
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();		
 		// TODO Auto-generated method stub
+		
 		return res;
 	}
 	
@@ -38,7 +39,9 @@ public class ThisExpNode implements Node{
 
 	@Override
 	public Node typeCheck() {
-		return null;
+		
+		
+		return new ObjectTypeNode(ObjectHandler.lastCall);
 		//return entry.getType();
 	}
 
