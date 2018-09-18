@@ -4,6 +4,7 @@ public class STentry {
   private int nl;
   private Node type;
   private int offset;
+  private Boolean isAttribute = false;
   
   public STentry (int n, int os)
   {nl=n;
@@ -25,6 +26,12 @@ public class STentry {
   
   public int getNestinglevel ()
   {return nl;}
+  
+  public void setAttribute()
+  {isAttribute = true;}
+  
+  public Boolean isAttribute()
+  {return isAttribute;}
   
   public String toPrint(String s) { //
 	   return s+"STentry: nestlev " + Integer.toString(nl) +"\n"+

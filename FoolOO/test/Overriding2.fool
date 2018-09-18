@@ -4,7 +4,7 @@ Overriding:
 
 class A {
    int u() 2;
-   int k() 6;
+   int k() 7;
 }
 class B implements A{
    bool u() true;

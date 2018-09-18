@@ -6,8 +6,8 @@ class Numero (int x){
    int due() this.uno();
 };
 let
-   Numero num = new Numero(2);
+   Numero num = new Numero(92);
 in
    print(num.due());
    
-//   "2" NO
+//   "92" NO

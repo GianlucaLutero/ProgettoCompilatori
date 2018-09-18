@@ -23,4 +23,4 @@
  	  topolino t = new topolino(true); 
  in print(p.prova(3,5) * t.bello());
  
- // "8" NO esplode con l'offset
+ // "8" 

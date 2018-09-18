@@ -53,7 +53,7 @@ public class IdNode implements Node {
         		  
         		  entry = new STentry(env.nestingLevel, aType, offset);
         		  nestinglevel = env.nestingLevel;
-        		  
+        		  entry.setAttribute();
         	  }else{
         		  
         		   res.add(new SemanticError("Id "+id+" not declared")); 		  
@@ -85,14 +85,20 @@ public class IdNode implements Node {
       String getAR="";
       String sh = "";
       String ad = "";
-      System.out.println("Offset della variabile:" + entry.getOffset());
+      String offst ="push "+entry.getOffset()+"\n";
+      
+      System.out.println("Offset della variabile "+id+":" + entry.getOffset());
       if(ObjectHandler.lastCall.equals("main")) {
-    	
-    	//  sh = "push "+entry.getOffset()+"\n"+"lfp\n";
+    	  offst = "push "+entry.getOffset()+"\n";
+    	  sh = "lfp\n";
     	  ad = "add\n";
     	  
+    	  if(entry.isAttribute()) {
+    		  System.out.println("La variabile "+id+ " e' un'attributo");
+    		  offst = "push "+entry.getOffset()+"\n"+"lfp\n"+"sub\n" ;
+    	  }
+    	  
       }else {
-    	
     	  sh = new ThisExpNode().codeGeneration();
     	  ad = "sub\n";
     	  
@@ -100,7 +106,8 @@ public class IdNode implements Node {
       
 	  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 	    	 getAR+="lw\n";
-	    return "push "+entry.getOffset()+"\n"+ //metto offset sullo stack
+	    return //"push "+entry.getOffset()+"\n"+ //metto offset sullo stack
+		       offst+
 		       sh+getAR+ //risalgo la catena statica
 			   ad+ 
                "lw\n"; //carico sullo stack il valore all'indirizzo ottenuto
