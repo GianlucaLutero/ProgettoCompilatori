@@ -37,36 +37,36 @@ public class MethodExpNode implements Node {
 	@Override
 	public Node typeCheck() {
 		// controllo del tipo dell'oggetto
-		//controllo se il metodo è un ArrowType
+		// controllo se il metodo è un ArrowType
 		// controllo del numero dei parametri del metodo
 		// controllo del tipo dei parametri del metodo
-		
+
 		ObjectTypeNode o=null; 
-	     if (objectNode.getType() instanceof ObjectTypeNode) o=(ObjectTypeNode) objectNode.getType(); 
-	     else {
-	       System.out.println("Invocation of a non-object "+caller); // da sistemare messaggio errore
-	       System.exit(0);
-	     }
-		
+		if (objectNode.getType() instanceof ObjectTypeNode) o=(ObjectTypeNode) objectNode.getType(); 
+		else {
+			throw new Error("Invocation of a non-object "+caller); // da sistemare messaggio errore
+			//System.exit(0);
+		}
+
 		ArrowTypeNode m=null;
-	     if (methodNode.getType() instanceof ArrowTypeNode) m=(ArrowTypeNode) methodNode.getType(); 
-	     else {
-	    	 
-	       System.out.println("Invocation of a non-method "+id);
-	       System.exit(0);
-	     }
-	     
-	     ArrayList<Node> p = m.getParList();
-	     if ( !(p.size() == parlist.size()) ) {
-	       System.out.println("Wrong number of parameters in the invocation of "+id);
-	       System.exit(0);
-	     } 
-	     for (int i=0; i<parlist.size(); i++) 
-	       if ( !(FOOLlib.isSubtype( (parlist.get(i)).typeCheck(), p.get(i)) ) ) {
-	         System.out.println("Wrong type for "+(i+1)+"-th parameter in the invocation of "+id);
-	         System.exit(0);
-	       } 
-		
+		if (methodNode.getType() instanceof ArrowTypeNode) m=(ArrowTypeNode) methodNode.getType(); 
+		else {
+
+			throw new Error("Invocation of a non-method "+id);
+			//System.exit(0);
+		}
+
+		ArrayList<Node> p = m.getParList();
+		if ( !(p.size() == parlist.size()) ) {
+			throw new Error("Wrong number of parameters in the invocation of "+id);
+			//System.exit(0);
+		} 
+		for (int i=0; i<parlist.size(); i++) 
+			if ( !(FOOLlib.isSubtype( (parlist.get(i)).typeCheck(), p.get(i)) ) ) {
+				throw new Error("Wrong type for "+(i+1)+"-th parameter in the invocation of "+id);
+				//System.exit(0);
+			} 
+
 		return m.getRet();
 	}
 
@@ -166,6 +166,9 @@ public class MethodExpNode implements Node {
 			
 		}
 		nestinglevel = env.nestingLevel;
+		
+		ObjectHandler.lastEntry = objectNode;
+		
 		return res;
 	}
 

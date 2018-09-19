@@ -100,6 +100,8 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 			//System.out.println("Class "+className+" implements: "+ctx.ID(1));
 		    classParent = ctx.ID(1).toString();
 		
+		ObjectHandler.lastCall = className;
+		
 		for(FunContext f : ctx.fun())
 			mList.add(visit(f));
 		

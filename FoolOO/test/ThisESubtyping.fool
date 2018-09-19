@@ -2,11 +2,11 @@
 this con subtyping:
 */
 class X (int x) {
-    Numero getThis() this;
+    X getThis() this;
     int getX() x;
 }
 class Y implements X (int x) {
-    Numero2 getThis() this;
+    Y getThis() this;
 };
 let
     Y num = new Y(12);

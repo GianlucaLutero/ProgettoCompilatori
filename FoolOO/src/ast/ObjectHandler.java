@@ -17,6 +17,7 @@ public class ObjectHandler {
 	private static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
 	
 	public static String lastCall = "";
+	public static STentry lastEntry;
 	
 	/*
 	 * Viene controllato se la classe NAME e' presente nella lista
