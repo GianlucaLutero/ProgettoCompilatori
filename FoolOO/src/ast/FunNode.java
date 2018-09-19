@@ -110,7 +110,11 @@ public class FunNode implements Node {
 	if (declist!=null) 
 	  for (Node dec:declist)
 		dec.typeCheck();
-    if ( !(FOOLlib.isSubtype(body.typeCheck(),type)) ){
+	if(type instanceof ObjectTypeNode) {
+		System.out.println("Body return type: "+((ObjectTypeNode)type).getType());
+	}
+	
+	if ( !(FOOLlib.isSubtype(body.typeCheck(),type)) ){
       System.out.println("Wrong return type for function "+id);
       System.exit(0);
     }  

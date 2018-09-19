@@ -94,8 +94,7 @@ public class IdNode implements Node {
     	  ad = "add\n";
     	  
     	  if(entry.isAttribute()) {
-    		  System.out.println("La variabile "+id+ " e' un'attributo");
-    		  offst = "push "+entry.getOffset()+"\n"+"lfp\n"+"sub\n" ;
+    		  offst = "push "+entry.getOffset()+"\n"+"push -1\n"+"mult\n"+"lfp\n"+"sub\n" ;
     	  }
     	  
       }else {

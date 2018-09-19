@@ -25,8 +25,12 @@ public class FOOLlib {
 		
 		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType());
 		
-		if(c.getClassName().equals(((ObjectTypeNode)b).getType()))
-			return true;
+		if(c != null) {
+			if(c.getClassName().equals(((ObjectTypeNode)b).getType()))
+				return true;
+		}else {
+			throw new Error("No class declared with name: "+ ((ObjectTypeNode)a).getType());
+		}
 		
 		// Risalgo la catena di ereditarieta' per verificare il subtyping
 		while(c.getParent() != null) {

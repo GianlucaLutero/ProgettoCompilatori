@@ -101,7 +101,7 @@ public class ClassdecNode implements Node {
 			}
 			
 			ObjectHandler.lastCall = className;
-			
+			System.out.println("Dichiaro la classe: "+ObjectHandler.lastCall);
 					
 			// Aggiungo la classe all'object handler
 		
@@ -129,7 +129,7 @@ public class ClassdecNode implements Node {
 		return se;
 	}
 	
-
+/*
 	public String getClassName() {
 		return className;
 	}
@@ -141,5 +141,6 @@ public class ClassdecNode implements Node {
 	public ArrayList<Node> getClassAttr() {
         return classAttr;
     }
+    */
 
 }
