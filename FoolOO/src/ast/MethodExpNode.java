@@ -80,16 +80,16 @@ public class MethodExpNode implements Node {
 		STentry method = null;
 		boolean foundMethod = false;
 		String completeName = "";
-	
 			
 		// cerco nella symbol table se l'oggetto è stato dichiarato
 		if(caller.equals("this")) {
-		
+			ObjectHandler.isThis = true;
 			System.out.println("this call is of type "+ObjectHandler.lastCall);
-		//	caller = ObjectHandler.lastCall;
+			//caller = ObjectHandler.lastVariable;
 			System.out.println("This is calling "+id);
-			objCaller = new STentry(nestinglevel, new ObjectTypeNode(ObjectHandler.lastCall), -2);
-			
+		//	System.out.println("Entry of this: "+ObjectHandler.lastEntry);
+			objCaller = new STentry(env.nestingLevel-1, new ObjectTypeNode(ObjectHandler.lastCall), -2);
+		//	objCaller = ObjectHandler.lastEntry;
 		}else {
 			
 		//	ObjectHandler.lastCall = caller;
@@ -111,7 +111,6 @@ public class MethodExpNode implements Node {
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
 			
 			boolean foundClass = ObjectHandler.checkClass(tipo);
-			
 			
 			if(foundClass){
 	
@@ -163,11 +162,13 @@ public class MethodExpNode implements Node {
 			for(Node arg : parlist)
 			res.addAll(arg.checkSemantics(env));
 			
+			ObjectHandler.lastEntry = objectNode;
 			
 		}
+		
 		nestinglevel = env.nestingLevel;
 		
-		ObjectHandler.lastEntry = objectNode;
+		
 		
 		return res;
 	}
@@ -176,25 +177,55 @@ public class MethodExpNode implements Node {
 	public String codeGeneration() {
 		
 		String objectCode= Integer.toString(objectNode.getOffset());
+		String callerCode = "push " + objectCode + "\n";
 		
 		String parCode="";
+		int pad = 1;
+		
+		if(ObjectHandler.isThis) {
+			pad = 2;
+		}
+		
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
 	    System.out.println("Object pointer: "+objectCode);
-	    System.out.println("Method offset: "+(methodNode.getOffset()+1));
+	    System.out.println("Method offset: "+(methodNode.getOffset()+pad));
 	    System.out.println("Parameter list: "+parCode);
 	    
+	    
+	    System.out.println("Nesting level: "+nestinglevel);
+	    System.out.println("Nesting level caller: "+objectNode.getNestinglevel());
+	    
 	    String getAR="";
-		  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
-		    	 getAR+="lw\n";
+	    
 		  
-	    //System.out.println("AR: "+getAR);
-		  
+	  
+		if(caller.equals("this")) {
+			
+			  for (int i=0; i< nestinglevel-1; i++) 
+			    	 getAR+="lw\n";
+			
+			
+			objectCode =Integer.toString(ObjectHandler.lastEntry.getOffset());
+			System.out.println("Offset in cui si trova l'oggetto: "+objectCode);
+			callerCode = "lfp\n"+getAR+"push "+ objectCode +"\n"+"add\n"+"lw\n"; 
+		//	callerCode = "push " + objectCode + "\n";
+			
+	//		System.out.println(callerCode);
+		}else {
+			  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
+			    	 getAR+="lw\n";	
+		}
+		
+	   System.out.println("AR: "+getAR);
+			
+		
 		return 	"lfp\n"+
 				parCode + "\n"+
-				"push " + objectCode + "\n" +
-		//		"lfp\n"+getAR+
-				"push "+(methodNode.getOffset()+1)+"\n"+
+		//		"push " + objectCode + "\n" +
+				callerCode+
+		//		"lfp\n"+getAR+"add\n"+"lw\n"+
+				"push "+(methodNode.getOffset()+pad)+"\n"+
 				"lfp\n"+getAR+ //risalgo la catena statica							( push $fp + ?? )
 				"add\n"+
 	            "lw\n"+ //carico sullo stack il valore all'indirizzo ottenuto		

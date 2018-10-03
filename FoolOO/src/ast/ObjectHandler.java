@@ -17,7 +17,9 @@ public class ObjectHandler {
 	private static ArrayList<ClassDescriptor> classList = new ArrayList<ClassDescriptor>(); 
 	
 	public static String lastCall = "";
+	public static String lastVariable = "";
 	public static STentry lastEntry;
+	public static Boolean isThis = false;
 	
 	/*
 	 * Viene controllato se la classe NAME e' presente nella lista
@@ -102,6 +104,7 @@ public class ObjectHandler {
 	public static void resetHandler() {
 		classList = new ArrayList<ClassDescriptor>();
 		lastCall = "";
+		isThis = false;
 	}
 	
 	/*

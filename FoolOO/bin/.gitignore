@@ -1,9 +1,2 @@
 /parser/
-<<<<<<< HEAD
-/util/
 /ast/
-/lib/
-=======
-/lib/
-/ast/
->>>>>>> edb011fa5a6a6e85d1a17e3c931d6cf47e1ab073

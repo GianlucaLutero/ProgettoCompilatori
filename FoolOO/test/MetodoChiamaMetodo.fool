@@ -2,7 +2,7 @@
 metodo chiama metodo:
 */
 class Numero (int x){
-   int uno() x;
+   int uno() x + 1;
    int due() this.uno();
 };
 let
@@ -10,4 +10,4 @@ let
 in
    print(num.due());
    
-//   "92" NO
+//   "93" 

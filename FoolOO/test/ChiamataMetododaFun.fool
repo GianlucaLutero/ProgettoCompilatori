@@ -2,10 +2,10 @@
 Chiamata metodo da funzione
 */
 class A (int x) {
-    int x() x;
+    int s() x;
     int z()
         let
-            int f() this.x();
+            int f() this.s();
         in
             f();
 };
@@ -14,4 +14,4 @@ let
 in
     print(a.z());
     
-// "1" NO
+// "1" 

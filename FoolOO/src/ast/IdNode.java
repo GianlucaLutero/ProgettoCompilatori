@@ -89,6 +89,7 @@ public class IdNode implements Node {
       
       System.out.println("Offset della variabile "+id+":" + entry.getOffset());
       if(ObjectHandler.lastCall.equals("main")) {
+    	  
     	  offst = "push "+entry.getOffset()+"\n";
     	  sh = "lfp\n";
     	  ad = "add\n";
@@ -105,6 +106,7 @@ public class IdNode implements Node {
       
 	  for (int i=0; i<nestinglevel-entry.getNestinglevel(); i++) 
 	    	 getAR+="lw\n";
+	  
 	    return //"push "+entry.getOffset()+"\n"+ //metto offset sullo stack
 		       offst+
 		       sh+getAR+ //risalgo la catena statica

@@ -15,7 +15,7 @@ public class ThisExpNode implements Node{
 	String classDef; //Da testare
 	
 	public ThisExpNode() {
-		// TODO Auto-generated constructor stub
+		
 		classDef = ObjectHandler.lastCall;
 	}
 	

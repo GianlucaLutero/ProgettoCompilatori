@@ -84,7 +84,7 @@ public class NewExpNode implements Node {
 			++i;
 		}
 		
-		System.out.println("Oggetto inizializzato: " + objectValue);
+	//	System.out.println("Oggetto inizializzato: " + objectValue);
 		
 		return  //"lhp\n" +
 			//	"push " + objectSize + "\n" +

@@ -50,6 +50,7 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	    }else {
 	    	caller = ctx.ID(0).getText();
 	    	methodID = ctx.ID(1).getText();
+	    	ObjectHandler.lastVariable = caller;
 	    }
 	    
 	    ArrayList<Node> args = new ArrayList<>();
