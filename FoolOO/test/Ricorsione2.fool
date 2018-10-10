@@ -1,11 +1,10 @@
-/*
-Ricorsione 2
-*/
+// Ricorsione 2
 
 let int f(int n, int r) 
-	if (n == r) then {r} 
+	if (n == r) 
+	then {r} 
 	else {n * f(n + 1, r)};
 	
 in print(f(5, 1));
 
-// "0" NO
+// "0" DICONO.... ma non converge in realta
