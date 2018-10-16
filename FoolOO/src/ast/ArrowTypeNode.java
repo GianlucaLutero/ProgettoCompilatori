@@ -25,6 +25,14 @@ public class ArrowTypeNode implements Node {
     return ret;
   }
   
+  public String getRetId() {
+	  if(ret instanceof ObjectTypeNode) return ((ObjectTypeNode)ret).getType();
+	  if(ret instanceof IntTypeNode) return "int";
+	  if(ret instanceof BoolTypeNode) return "bool";
+	  
+	  return "void";
+  }
+  
   public ArrayList<Node> getParList () { //
     return parlist;
   }

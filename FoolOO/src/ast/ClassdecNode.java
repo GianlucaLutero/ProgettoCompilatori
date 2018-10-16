@@ -24,7 +24,8 @@ public class ClassdecNode implements Node {
 		//classAttr = list;
 		//Aggiungo il nome della classe al nome del metodo
 		for(Node al : m) {
-			((FunNode)al).setFunId(((FunNode)al).getFunId().substring(9)+"_"+cName);;
+			((FunNode)al).setFunId(((FunNode)al).getTypeId()+"_"+((FunNode)al).getFunId().substring(9)+"_"+cName);
+	//		((FunNode)al).setFunId(((FunNode)al).getFunId().substring(9)+"_"+cName);			
 		}
 		methodList = m;
 	}

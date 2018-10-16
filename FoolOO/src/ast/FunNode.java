@@ -34,6 +34,14 @@ public class FunNode implements Node {
 	  id = s;
   }
   
+  public String getTypeId() {
+	  if(type instanceof ObjectTypeNode) return ((ObjectTypeNode)type).getType();
+	  if(type instanceof IntTypeNode) return "int";
+	  if(type instanceof BoolTypeNode) return "bool";
+	  
+	  return "void";
+  }
+  
   @Override
 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 	  

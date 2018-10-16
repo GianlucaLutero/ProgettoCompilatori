@@ -3,6 +3,7 @@ public class STentry {
  
   private int nl;
   private Node type;
+  private Node decType;
   private int offset;
   private Boolean isAttribute = false;
   
@@ -14,6 +15,14 @@ public class STentry {
   {nl=n;
    type=t;
    offset=os;}
+  
+  public void addDecType(Node dt) {
+	  decType = dt;
+  }
+  
+  public Node getDecType() {
+	  return decType;
+  }
   
   public void addType (Node t)
   {type=t;}

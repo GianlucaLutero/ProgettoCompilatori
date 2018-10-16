@@ -89,6 +89,7 @@ public class MethodExpNode implements Node {
 			System.out.println("This is calling "+id);
 		//	System.out.println("Entry of this: "+ObjectHandler.lastEntry);
 			objCaller = new STentry(env.nestingLevel-1, new ObjectTypeNode(ObjectHandler.lastCall), -2);
+			objCaller.addDecType(new ObjectTypeNode(ObjectHandler.lastCall));
 		//	objCaller = ObjectHandler.lastEntry;
 		}else {
 			
@@ -107,13 +108,25 @@ public class MethodExpNode implements Node {
 			objectNode = objCaller;
 			//verifico se esiste la classe dell'oggetto
 			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
+			ObjectTypeNode declObj = (ObjectTypeNode) objectNode.getDecType();
 			String tipo = obj.getType();
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
 			
 			boolean foundClass = ObjectHandler.checkClass(tipo);
 			
+			if(declObj.getType() != null && !obj.getType().equals(declObj.getType())) {
+				//obj = declObj;
+				foundClass = ObjectHandler.checkClass(declObj.getType());
+				tipo = declObj.getType();
+				objClassDescr = ObjectHandler.getClass(tipo);
+			}
+			
+			
 			if(foundClass){
 	
+				String lastRet = "";
+				String callType = "";
+				
 				// controllo se la classe ha quel metodo
 				//TO DO: controllare anche nella parent class!!!!
 				while(objClassDescr != null) { 
@@ -121,14 +134,37 @@ public class MethodExpNode implements Node {
 					completeName = id + "_"+tipo;
 					
 					ArrayList<String> methodList = objClassDescr.getMethodList();
+					
 					for(String s : methodList){
-						if(s.equals(completeName)){
-							foundMethod=true;
+						
+						String[] namParts = s.split("_",2);
+						
+						/*
+						 * Trovare condizione giusta per l'if 
+						 */
+						
+						if(namParts[1].equals(completeName)){
+							
+							if((namParts[0].equals(lastRet))) {
+								System.out.println("Call type: "+declObj.getType());
+								callType = declObj.getType();
+								//lastRet = namParts[0];
+								foundMethod=true;
+								
+							}	else {
+								callType = tipo;
+								lastRet = namParts[0];
+							//	foundMethod = true;
+							}
+							
+						//	foundMethod=true;
 						}
 					}
 					
 					if(foundMethod) {
-						id = id +"_"+tipo;
+						
+						completeName = lastRet +"_"+ id +"_"+callType;
+						System.out.println("Calling: "+completeName);
 						attributes = objClassDescr.getAttList();
 						break;
 					}else {
@@ -142,6 +178,8 @@ public class MethodExpNode implements Node {
 			}
 			
 		 }
+		
+		id = completeName;
 		
 		if(!foundMethod){ // se il metodo non esiste		
 			res.add(new SemanticError("Method "+ id+" not declared"));
@@ -188,36 +226,36 @@ public class MethodExpNode implements Node {
 		
 	    for (int i=parlist.size()-1; i>=0; i--)
 	    	parCode+=parlist.get(i).codeGeneration();
-	    System.out.println("Object pointer: "+objectCode);
-	    System.out.println("Method offset: "+(methodNode.getOffset()+pad));
-	    System.out.println("Parameter list: "+parCode);
+	 //   System.out.println("Object pointer: "+objectCode);
+	 //   System.out.println("Method offset: "+(methodNode.getOffset()+pad));
+	 //   System.out.println("Parameter list: "+parCode);
 	    
 	    
-	    System.out.println("Nesting level: "+nestinglevel);
-	    System.out.println("Nesting level caller: "+objectNode.getNestinglevel());
+	 //   System.out.println("Nesting level: "+nestinglevel);
+	 //   System.out.println("Nesting level caller: "+objectNode.getNestinglevel());
 	    
 	    String getAR="";
 	    
-		  
-	  
-		if(caller.equals("this")) {
-			
-			  for (int i=0; i< nestinglevel-1; i++) 
-			    	 getAR+="lw\n";
-			
-			
-			objectCode =Integer.toString(ObjectHandler.lastEntry.getOffset());
-			System.out.println("Offset in cui si trova l'oggetto: "+objectCode);
-			callerCode = "lfp\n"+getAR+"push "+ objectCode +"\n"+"add\n"+"lw\n"; 
-		//	callerCode = "push " + objectCode + "\n";
-			
-	//		System.out.println(callerCode);
-		}else {
-			  for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
-			    	 getAR+="lw\n";	
-		}
-		
-	   System.out.println("AR: "+getAR);
+
+
+	    if(caller.equals("this")) {
+
+	    	for (int i=0; i< nestinglevel-1; i++) 
+	    		getAR+="lw\n";
+
+
+	    	objectCode =Integer.toString(ObjectHandler.lastEntry.getOffset());
+	    	//	System.out.println("Offset in cui si trova l'oggetto: "+objectCode);
+	    	callerCode = "lfp\n"+getAR+"push "+ objectCode +"\n"+"add\n"+"lw\n"; 
+	    	//	callerCode = "push " + objectCode + "\n";
+
+	    	//	System.out.println(callerCode);
+	    }else {
+	    	for (int i=0; i< nestinglevel - objectNode.getNestinglevel(); i++) 
+	    		getAR+="lw\n";	
+	    }
+
+	  //	System.out.println("AR: "+getAR);
 			
 		
 		return 	"lfp\n"+

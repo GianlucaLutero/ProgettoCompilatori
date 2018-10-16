@@ -12,6 +12,7 @@ public class VarNode implements Node {
   private String id;
   private Node type;
   private Node exp;
+  private String dType;
   
   public VarNode (String i, Node t, Node v) {
     id=i;
@@ -27,6 +28,10 @@ public class VarNode implements Node {
   	  //env.offset = -2;
   	  HashMap<String,STentry> hm = env.symTable.get(env.nestingLevel);
         STentry entry = new STentry(env.nestingLevel,type, env.offset--); //separo introducendo "entry"
+        
+        if(type instanceof ObjectTypeNode) {
+        	entry.addDecType(new ObjectTypeNode(dType));
+        }
         
         if ( hm.put(id,entry) != null )
           res.add(new SemanticError("Var id "+id+" already declared"));
@@ -44,16 +49,24 @@ public class VarNode implements Node {
   
   //valore di ritorno non utilizzato
   public Node typeCheck () {
+	
+	Node decType = exp.typeCheck();
+	  
     if (! (FOOLlib.isSubtype(exp.typeCheck(),type)) ){      
       System.out.println("incompatible value for variable "+id);
       throw new Error("Incompatible value for variable "+id);
       //System.exit(0);
     }     
-    return null;
+
+    return type;
   }
   
   public String codeGeneration() {
 		return exp.codeGeneration();
   }  
+  
+  public void addDtype(String t) {
+	  dType = t;
+  }
     
 }  

@@ -63,7 +63,6 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	
 	@Override
 	public Node visitNewExp(NewExpContext ctx) {
-		// TO DO
 		// Si deve ricavare il nome della classe
 		// e la lista dei parametri con cui inizializzare l'oggetto
 		
@@ -205,15 +204,21 @@ public class FoolVisitorImpl extends FOOLBaseVisitor<Node> {
 	public Node visitVarasm(VarasmContext ctx) {
 		
 		//declare the result node
-		//VarNode result;
+		VarNode result;
 		
 		Node typeNode = visit(ctx.vardec().type());
 		
 		//visit the exp
 		Node expNode = visit(ctx.exp());
 		
+		result = new VarNode(ctx.vardec().ID().getText(), typeNode, expNode);
+		
+		if(expNode instanceof NewExpNode) {
+			result.addDtype(((NewExpNode) expNode).getObject_id());
+		}
+		
 		//build the varNode
-		return new VarNode(ctx.vardec().ID().getText(), typeNode, expNode);
+		return result;
 	}
 	
 	@Override
