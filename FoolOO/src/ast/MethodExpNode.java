@@ -106,23 +106,19 @@ public class MethodExpNode implements Node {
 			 res.add(new SemanticError("Caller "+ caller +" not declared"));		 
 		} else {
 			objectNode = objCaller;
-			//verifico se esiste la classe dell'oggetto CHIAMATOOOO
+			//verifico se esiste la classe dell'oggetto
 			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
 			ObjectTypeNode declObj = (ObjectTypeNode) objectNode.getDecType();
 			String tipo = obj.getType();
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
 			
 			boolean foundClass = ObjectHandler.checkClass(tipo);
-			boolean foundClassParent = false;
 			
-			// CLASSE PARENT
-			ClassDescriptor objClassDescrParent = null;
-			String tipoParent;
 			if(declObj.getType() != null && !obj.getType().equals(declObj.getType())) {
 				//obj = declObj;
-				foundClassParent = ObjectHandler.checkClass(declObj.getType());
-				tipoParent = declObj.getType();
-				objClassDescrParent = ObjectHandler.getClass(tipoParent);
+				foundClass = ObjectHandler.checkClass(declObj.getType());
+				tipo = declObj.getType();
+				objClassDescr = ObjectHandler.getClass(tipo);
 			}
 			
 			
@@ -138,11 +134,6 @@ public class MethodExpNode implements Node {
 					completeName = id + "_"+tipo;
 					
 					ArrayList<String> methodList = objClassDescr.getMethodList();
-					//ottieni lista metodi di entrambe le classi, sia di quella di destra che quella di sinistra
-					//Numero numx = new Numerox(2); quindi sia la lista di metodi di Numero che di Numerox
-					// e poi confronti i tipi di ritorno
-					//se sono uguali richiami metodo di Numerox
-					ArrayList<String> methodListParent = objClassDescrParent.getMethodList();
 					
 					for(String s : methodList){
 						
