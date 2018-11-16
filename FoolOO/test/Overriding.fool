@@ -9,7 +9,6 @@ class A(int l){
        
    int g()
       3;    
-
 }
 
 class B implements A (bool q){
@@ -22,9 +21,9 @@ class B implements A (bool q){
 let A c = new A(1);
     B d = new B(true);
  in
- print( c.f());
+// print( c.f());
 // print( d.f());
 // print( c.g());
-// print( d.g());
+ print( d.g());
 
-// OK ma no ovveriding
+// OK

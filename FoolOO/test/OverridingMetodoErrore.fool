@@ -14,4 +14,4 @@ let
 in
     print(c.f(true));
         
-// "errore di tipo" OK per l'errore...ma con  print(c.f(true)) restituisce -2 ?!?!?
+// OK 

@@ -10,4 +10,4 @@ let
 in
     print(a.x());
     
-// "1"  NO
+// "1"  OK

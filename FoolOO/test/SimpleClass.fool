@@ -15,4 +15,4 @@
  };
  
  let int x=0; in print(3 + 3);
- // NO
+6 // OK
