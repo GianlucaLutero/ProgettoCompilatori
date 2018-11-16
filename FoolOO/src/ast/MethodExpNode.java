@@ -111,6 +111,7 @@ public class MethodExpNode implements Node {
 			ObjectTypeNode declObj = (ObjectTypeNode) objectNode.getDecType();
 			String tipo = obj.getType();
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
+			ClassDescriptor objClassImpl = null;
 			
 			boolean foundClass = ObjectHandler.checkClass(tipo);
 			
@@ -118,7 +119,10 @@ public class MethodExpNode implements Node {
 				//obj = declObj;
 				foundClass = ObjectHandler.checkClass(declObj.getType());
 				tipo = declObj.getType();
-				objClassDescr = ObjectHandler.getClass(tipo);
+			//	objClassDescr = ObjectHandler.getClass(tipo);
+				objClassImpl = ObjectHandler.getClass(tipo);
+			}else {
+				objClassImpl = objClassDescr;
 			}
 			
 			
@@ -129,15 +133,16 @@ public class MethodExpNode implements Node {
 				
 				// controllo se la classe ha quel metodo
 				//TO DO: controllare anche nella parent class!!!!
-				while(objClassDescr != null) { 
+				while(objClassImpl != null) { 
 					
 					completeName = id + "_"+tipo;
 					
-					ArrayList<String> methodList = objClassDescr.getMethodList();
+					ArrayList<String> methodList = objClassImpl.getMethodList();
 					
 					for(String s : methodList){
 						
 						String[] namParts = s.split("_",2);
+						System.out.println("Nome metodo: "+s);
 						
 						/*
 						 * Trovare condizione giusta per l'if 
@@ -145,32 +150,57 @@ public class MethodExpNode implements Node {
 						
 						if(namParts[1].equals(completeName)){
 							
-							if((namParts[0].equals(lastRet))) {
-								System.out.println("Call type: "+declObj.getType());
-								callType = declObj.getType();
-								//lastRet = namParts[0];
-								foundMethod=true;
+						//	if((namParts[0].equals(lastRet))) {
 								
-							}	else {
-								callType = tipo;
-								lastRet = namParts[0];
+								ArrayList<String> parentMethod = ObjectHandler.getClass(objClassDescr.getClassName()).getMethodList();
+								
+								
+								System.out.println("Call type: "+objClassDescr.getClassName());
+								
+								if(parentMethod != null) {
+									for(String ps: parentMethod) {
+										String[] psParts = ps.split("_",2);
+										
+										if(psParts[0].equals(namParts[0])) {
+											callType = objClassImpl.getClassName();
+											lastRet = namParts[0];
+											
+											System.out.println("Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+										}else {
+											callType = objClassDescr.getClassName();
+											lastRet = psParts[0];
+											System.out.println("Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+										}
+									}
+								}else {
+									System.out.println("No parent!");
+								}
+								
+							//	callType = declObj.getType();
+								//lastRet = namParts[0];
+							//	foundMethod=true;
+								
+						//	}	else {
+						//		callType = tipo;
+						//		lastRet = namParts[0];
 							//	foundMethod = true;
-							}
+						//	}
 							
-						//	foundMethod=true;
+							foundMethod=true;
 						}
+						
 					}
 					
 					if(foundMethod) {
 						
 						completeName = lastRet +"_"+ id +"_"+callType;
 						System.out.println("Calling: "+completeName);
-						attributes = objClassDescr.getAttList();
+						attributes = objClassImpl.getAttList();
 						break;
 					}else {
 						System.out.println("Search in parent!!");
-						tipo = objClassDescr.getParent();
-						objClassDescr = ObjectHandler.getClass(objClassDescr.getParent());
+						tipo = objClassImpl.getParent();
+						objClassImpl = ObjectHandler.getClass(objClassImpl.getParent());
 					}
 				}
 			} else {

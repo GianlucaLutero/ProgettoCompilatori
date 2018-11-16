@@ -18,7 +18,7 @@ code_generation( Class T(AttributeList) { MethodList } ) :=
 
 
 
-SEMANTIC CHEC)KING
+SEMANTIC CHECKING
 
 check_semantics( Class T(AttrList){MethodList} ) :=
 

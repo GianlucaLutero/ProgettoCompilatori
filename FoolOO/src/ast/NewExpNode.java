@@ -90,6 +90,7 @@ public class NewExpNode implements Node {
 			//	"push " + objectSize + "\n" +
 				objectValue +
 				//"add\n" +
+				"push "+ObjectHandler.getClass(object_id).getSize()+"\n"+
 	            "shp\n"	+
 				"lhp\n";
 	}

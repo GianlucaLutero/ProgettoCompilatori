@@ -23,5 +23,6 @@ let
     Numero numz = new Numeroz(2);
 in
     print(num.getX() + numx.getY() + numy.getX() + numz.getY());
+  //		2				3			4				5
     
 // "14" NO

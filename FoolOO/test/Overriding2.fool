@@ -15,4 +15,4 @@ let A y = new B;
 in 
 print(y.k() + y.u());
   
-// "8" NO esplode con gli offset
+// "8" 
