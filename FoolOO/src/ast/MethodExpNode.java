@@ -165,11 +165,12 @@ public class MethodExpNode implements Node {
 											callType = objClassImpl.getClassName();
 											lastRet = namParts[0];
 											
-											System.out.println("Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+											System.out.println("1) Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+											break;
 										}else {
 											callType = objClassDescr.getClassName();
 											lastRet = psParts[0];
-											System.out.println("Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+											System.out.println("2) Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
 										}
 									}
 								}else {
@@ -221,8 +222,10 @@ public class MethodExpNode implements Node {
 			}
 			
 			//method = (env.symTable.get(0)).get(id);
-			
-			methodNode= method;
+			System.out.println("AAAAAAAAAAAAAAAa Method: "+method);
+			methodNode = method;
+			System.out.println("AAAAAAAAAAAAAAAa Method: "+methodNode);
+			System.out.println("AAAAAAAAAAAAAAAAA Type: "+methodNode.getDecType());
 			
 			// attributes.forEach((key,value) ->parlist.add( new IdNode(key)));
 			// il metodo esiste e quindi controllo la semantica dei parametri del metodo

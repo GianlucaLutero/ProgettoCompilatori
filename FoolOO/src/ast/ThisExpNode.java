@@ -15,7 +15,6 @@ public class ThisExpNode implements Node{
 	String classDef; //Da testare
 	
 	public ThisExpNode() {
-		
 		classDef = ObjectHandler.lastCall;
 	}
 	
@@ -30,6 +29,8 @@ public class ThisExpNode implements Node{
 		ArrayList<SemanticError> res = new ArrayList<SemanticError>();		
 
 		entry = ObjectHandler.lastEntry;
+		
+		
 		
 		return res;
 	}

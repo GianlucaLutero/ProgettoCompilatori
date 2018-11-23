@@ -10,6 +10,6 @@ let
     Numero num = new Numero(10);
     Numero num2 = num.getThis();
 in
-    print(num2.getX());
+    print(num.getX());
     
 // "10" NO
