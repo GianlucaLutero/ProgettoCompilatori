@@ -25,16 +25,16 @@ public class ObjectTypeNode  implements Node{
 		  
 	    return null;
 	  }
-	  
-	  @Override
-	 	public ArrayList<SemanticError> checkSemantics(Environment env) {
 
-	 	  return new ArrayList<SemanticError>();
-	 	}
-	  
+	  @Override
+	  public ArrayList<SemanticError> checkSemantics(Environment env) {
+
+		  return new ArrayList<SemanticError>();
+	  }
+
 	  //non utilizzato
 	  public String codeGeneration() {
-			return "";
+		  return "";
 	  }
 
 }

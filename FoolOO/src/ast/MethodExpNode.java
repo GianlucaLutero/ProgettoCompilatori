@@ -132,7 +132,6 @@ public class MethodExpNode implements Node {
 				String callType = "";
 				
 				// controllo se la classe ha quel metodo
-				//TO DO: controllare anche nella parent class!!!!
 				while(objClassImpl != null) { 
 					
 					completeName = id + "_"+tipo;
@@ -143,10 +142,6 @@ public class MethodExpNode implements Node {
 						
 						String[] namParts = s.split("_",2);
 						System.out.println("Nome metodo: "+s);
-						
-						/*
-						 * Trovare condizione giusta per l'if 
-						 */
 						
 						if(namParts[1].equals(completeName)){
 							
@@ -164,7 +159,6 @@ public class MethodExpNode implements Node {
 										if(psParts[0].equals(namParts[0])) {
 											callType = objClassImpl.getClassName();
 											lastRet = namParts[0];
-											
 											System.out.println("1) Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
 											break;
 										}else {
@@ -222,10 +216,10 @@ public class MethodExpNode implements Node {
 			}
 			
 			//method = (env.symTable.get(0)).get(id);
-			System.out.println("AAAAAAAAAAAAAAAa Method: "+method);
+		//	System.out.println("AAAAAAAAAAAAAAAa Method: "+method);
 			methodNode = method;
-			System.out.println("AAAAAAAAAAAAAAAa Method: "+methodNode);
-			System.out.println("AAAAAAAAAAAAAAAAA Type: "+methodNode.getDecType());
+		//	System.out.println("AAAAAAAAAAAAAAAa Method: "+methodNode);
+		//	System.out.println("AAAAAAAAAAAAAAAAA Type: "+methodNode.getDecType());
 			
 			// attributes.forEach((key,value) ->parlist.add( new IdNode(key)));
 			// il metodo esiste e quindi controllo la semantica dei parametri del metodo
