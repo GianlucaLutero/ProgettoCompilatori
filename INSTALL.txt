@@ -44,3 +44,8 @@ SETTINGS AFTER INSTALL
     - Click Add and select from ProgettoCompilatori/FoolOO/lib/antlr-4.7-complete.jar
     - In Options uncheck Generate a parse tree listener
     - In Directory cancel the current directory and type ./src
+
+USAGE
+
+	- Copy a fool program in FoolOO/test/
+	- Select FoolOOInterpreter file -> Right click on the file and select Run as -> Java program
