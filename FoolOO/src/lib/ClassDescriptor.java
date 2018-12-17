@@ -21,9 +21,9 @@ public class ClassDescriptor {
 	// Da implementare la lista degli attributi come lista di coppie 
 	// < nome_attributo , offset >
 	private HashMap<String, Integer> attrList;
-	private HashMap<String,	Node> attrTypeList;
+	private HashMap<String,	Node> attrTypeList; // lista dei tipi degli attributi
 	
-	private ArrayList<String> mList;
+	private ArrayList<String> mList; // lista dei metodi
 	
 	public ClassDescriptor(String n,String p) {
 		className = n;

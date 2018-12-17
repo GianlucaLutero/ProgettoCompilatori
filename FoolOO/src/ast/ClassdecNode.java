@@ -24,6 +24,7 @@ public class ClassdecNode implements Node {
 		//classAttr = list;
 		//Aggiungo il nome della classe al nome del metodo
 		for(Node al : m) {
+			// --->   tipo di ritorno_nome metodo_nome classe
 			((FunNode)al).setFunId(((FunNode)al).getTypeId()+"_"+((FunNode)al).getFunId().substring(9)+"_"+cName);
 	//		((FunNode)al).setFunId(((FunNode)al).getFunId().substring(9)+"_"+cName);			
 		}
@@ -76,7 +77,7 @@ public class ClassdecNode implements Node {
 		String codeClass = "";
 		
 		for(Node fun: methodList) {
-			codeClass += fun.codeGeneration();
+			codeClass += fun.codeGeneration(); // genera il codice dei metodi della classe utilizzando il nodo FunNode
 		}
 		
 		return codeClass;

@@ -10,7 +10,7 @@ public class FOOLlib {
 
   private static String funCode=""; 
 
-  //valuta se il tipo "a" ï¿½ <= al tipo "b", dove "a" e "b" sono tipi di base: int o bool
+  //valuta se il tipo "a" è <= al tipo "b", dove "a" e "b" sono tipi di base: int o bool
   public static boolean isSubtype (Node a, Node b) { 
 	
 	boolean objectSubtype = false;
@@ -23,22 +23,22 @@ public class FOOLlib {
 	
 	if(a instanceof ObjectTypeNode && b instanceof ObjectTypeNode) {
 		
-		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType());
+		ClassDescriptor c = ObjectHandler.getClass(((ObjectTypeNode)a).getType()); // info classe a
 		
 		if(c != null) {
-			if(c.getClassName().equals(((ObjectTypeNode)b).getType()))
-				return true;
+			if(c.getClassName().equals(((ObjectTypeNode)b).getType())) // confronto nome della classe di a con il nome di b
+				return true; // a e b sono oggetti della stessa classe
 		}else {
 			throw new Error("No class declared with name: "+ ((ObjectTypeNode)a).getType());
 		}
 		
-		// Risalgo la catena di ereditarieta' per verificare il subtyping
-		while(c.getParent() != null) {
+		// Risalgo la catena di ereditarieta' di a per verificare il subtyping finchè non è uguale a b
+		while(c.getParent() != null) { // papà di a
 			
 			
-			ClassDescriptor d = ObjectHandler.getClass(((ObjectTypeNode)b).getType());
+			ClassDescriptor d = ObjectHandler.getClass(((ObjectTypeNode)b).getType()); // info classe b
 			
-			while(d != null) {
+			// DA TOGLIERE!!! while(d != null) { // papà di b
 			
 				if(c.getParent().equals(d.getClassName())) {
 					//objectSubtype = true;
@@ -46,8 +46,8 @@ public class FOOLlib {
 					//break;
 				}
 				
-				d = ObjectHandler.getClass(d.getParent());
-			}
+				// DA TOGLIERE!!! d = ObjectHandler.getClass(d.getParent());
+			//} DA TOGLIERE!!!
 		
 			
 			c = ObjectHandler.getClass(c.getParent());
@@ -61,6 +61,7 @@ public class FOOLlib {
 		return objectSubtype;
 	}
 	
+	// parte già presente nel codice
     return a.getClass().equals(b.getClass()) ||
     	   ( (a instanceof BoolTypeNode) && (b instanceof IntTypeNode) ); //
   } 

@@ -107,8 +107,8 @@ public class MethodExpNode implements Node {
 		} else {
 			objectNode = objCaller;
 			//verifico se esiste la classe dell'oggetto
-			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType();
-			ObjectTypeNode declObj = (ObjectTypeNode) objectNode.getDecType();
+			ObjectTypeNode obj = (ObjectTypeNode) objectNode.getType(); // obj destra
+			ObjectTypeNode declObj = (ObjectTypeNode) objectNode.getDecType(); // obj sinistra
 			String tipo = obj.getType();
 			ClassDescriptor objClassDescr = ObjectHandler.getClass(tipo);
 			ClassDescriptor objClassImpl = null;
@@ -143,7 +143,7 @@ public class MethodExpNode implements Node {
 						String[] namParts = s.split("_",2);
 						System.out.println("Nome metodo: "+s);
 						
-						if(namParts[1].equals(completeName)){
+						if(namParts[1].equals(completeName)){ // nome metodo
 							
 						//	if((namParts[0].equals(lastRet))) {
 								
@@ -156,15 +156,16 @@ public class MethodExpNode implements Node {
 									for(String ps: parentMethod) {
 										String[] psParts = ps.split("_",2);
 										
-										if(psParts[0].equals(namParts[0])) {
+										// confronti i tipi di ritorno perchè è stato trovato lo stesso metodo nel parent
+										if(psParts[0].equals(namParts[0])) { // se il nome del metodo e il tipo di ritorno sono uguali
 											callType = objClassImpl.getClassName();
 											lastRet = namParts[0];
-											System.out.println("1) Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+											System.out.println("1) Da qui chiamo: "+lastRet+"_"+id+"_"+callType); // chiami metodo dell'oggetto a destra (overriding)
 											break;
-										}else {
+										}else { // se il nome del metodo è uguale ma il tipo di ritorno è diverso
 											callType = objClassDescr.getClassName();
 											lastRet = psParts[0];
-											System.out.println("2) Da qui chiamo: "+lastRet+"_"+id+"_"+callType);
+											System.out.println("2) Da qui chiamo: "+lastRet+"_"+id+"_"+callType); // chiami metodo del parent
 										}
 									}
 								}else {
@@ -190,10 +191,10 @@ public class MethodExpNode implements Node {
 						
 						completeName = lastRet +"_"+ id +"_"+callType;
 						System.out.println("Calling: "+completeName);
-						attributes = objClassImpl.getAttList();
+						attributes = objClassImpl.getAttList(); // prendi i dati degli attributi
 						break;
 					}else {
-						System.out.println("Search in parent!!");
+						System.out.println("Search in parent!!"); // controlli risalendo tutti i parent
 						tipo = objClassImpl.getParent();
 						objClassImpl = ObjectHandler.getClass(objClassImpl.getParent());
 					}
