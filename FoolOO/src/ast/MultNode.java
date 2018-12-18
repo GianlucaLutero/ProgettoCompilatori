@@ -7,7 +7,7 @@ import util.SemanticError;
 import lib.FOOLlib;
 
 public class MultNode implements Node {
-
+// moltiplicazione
   private Node left;
   private Node right;
   

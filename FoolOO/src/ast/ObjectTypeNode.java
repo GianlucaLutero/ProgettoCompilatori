@@ -6,7 +6,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class ObjectTypeNode  implements Node{
-	
+	// classe per definire il tipo "oggetto di una classe"
 	private String type; //tipo dell'oggetto
 	
 	 public ObjectTypeNode (String t) {

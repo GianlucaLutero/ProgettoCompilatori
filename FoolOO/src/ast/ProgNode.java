@@ -6,7 +6,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class ProgNode implements Node {
-
+// nodo radice di un programma semplice senza dichiarazioni di classi
   private Node exp;
   
   public ProgNode (Node e) {

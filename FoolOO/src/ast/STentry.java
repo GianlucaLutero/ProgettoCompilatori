@@ -1,11 +1,12 @@
 package ast;
 public class STentry {
- 
+ // oggetti nella symbol table
+	
   private int nl;
   private Node type;
   private Node decType;
   private int offset;
-  private Boolean isAttribute = false;
+  private Boolean isAttribute = false; // controllo se è un attributo dell'oggetto usato in IdNode
   
   public STentry (int n, int os)
   {nl=n;

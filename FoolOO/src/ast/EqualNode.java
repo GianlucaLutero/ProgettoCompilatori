@@ -7,7 +7,7 @@ import util.SemanticError;
 import lib.FOOLlib;
 
 public class EqualNode implements Node {
-
+// uguaglianza tra nodi
   private Node left;
   private Node right;
   

@@ -6,7 +6,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class ParNode implements Node {
-
+// parametri
   private String id;
   private Node type;
   

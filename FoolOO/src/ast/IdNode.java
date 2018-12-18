@@ -9,7 +9,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class IdNode implements Node {
-
+// nodo valutazione delle variabili (quando vengono usate le variabili)
   private String id;
   private STentry entry;
   private int nestinglevel;
