@@ -6,6 +6,7 @@ import util.SemanticError;
 
 public class ArrowTypeNode implements Node {
 
+// TIPO DELLE FUNZIONE 
   private ArrayList<Node> parlist; 
   private Node ret;
   
@@ -26,7 +27,7 @@ public class ArrowTypeNode implements Node {
   }
   
   public String getRetId() {
-	  if(ret instanceof ObjectTypeNode) return ((ObjectTypeNode)ret).getType();
+	  if(ret instanceof ObjectTypeNode) return ((ObjectTypeNode)ret).getType(); // <-- NEW 
 	  if(ret instanceof IntTypeNode) return "int";
 	  if(ret instanceof BoolTypeNode) return "bool";
 	  

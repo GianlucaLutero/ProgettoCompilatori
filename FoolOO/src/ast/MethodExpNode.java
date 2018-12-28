@@ -9,7 +9,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class MethodExpNode implements Node {
-	
+	// invocazione metodi
 	private String id;
 	// Dall'id del caller ricavo il puntatore this
 	private String caller;
@@ -213,7 +213,7 @@ public class MethodExpNode implements Node {
 			
 			j=env.nestingLevel;
 			while (j>=0 && method==null){
-				method=(env.symTable.get(j--)).get(id);
+				method=(env.symTable.get(j--)).get(id); // prendi offset del metodo
 			}
 			
 			//method = (env.symTable.get(0)).get(id);

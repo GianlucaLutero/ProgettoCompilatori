@@ -7,7 +7,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class FunNode implements Node {
-
+// dichiarazione di metodi e funzioni
   private String id;
   private Node type; 
   private ArrayList<Node> parlist = new ArrayList<Node>(); 

@@ -6,11 +6,13 @@ import util.SemanticError;
 import lib.FOOLlib;
 
 public class CallNode implements Node {
-
+	
+// chiamata di metodi e funzioni
+	
   private String id;
   private STentry entry; // entry point funzione
   private ArrayList<Node> parlist; // lista parametri
-  private int nestinglevel; 
+  private int nestinglevel; // scope
 
   
   public CallNode (String i, STentry e, ArrayList<Node> p, int nl) {

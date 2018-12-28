@@ -7,7 +7,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class ProgLetInNode implements Node {
-
+// nodo radice quando c'è un let in
   private ArrayList<Node> declist;
   private Node exp;
   

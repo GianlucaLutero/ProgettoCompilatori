@@ -8,7 +8,7 @@ import util.SemanticError;
 import lib.FOOLlib;
 
 public class VarNode implements Node {
-
+// dichiarazione di una variabile di qualsiasi tipo
   private String id;
   private Node type;
   private Node exp;

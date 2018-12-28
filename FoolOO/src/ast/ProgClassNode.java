@@ -8,7 +8,7 @@ import util.Environment;
 import util.SemanticError;
 
 public class ProgClassNode implements Node{
-
+// nodo radice: nodo radice quando ci sono classi dichiarate e poi il corpo del programma
 	private ArrayList<Node> declist;
 	private Node exp;
 	
