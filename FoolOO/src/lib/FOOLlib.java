@@ -38,7 +38,7 @@ public class FOOLlib {
 			
 			ClassDescriptor d = ObjectHandler.getClass(((ObjectTypeNode)b).getType()); // info classe b
 			
-			// DA TOGLIERE!!! while(d != null) { // papà di b
+			while(d != null) { // papà di b
 			
 				if(c.getParent().equals(d.getClassName())) {
 					//objectSubtype = true;
@@ -46,8 +46,8 @@ public class FOOLlib {
 					//break;
 				}
 				
-				// DA TOGLIERE!!! d = ObjectHandler.getClass(d.getParent());
-			//} DA TOGLIERE!!!
+				d = ObjectHandler.getClass(d.getParent());
+			}
 		
 			
 			c = ObjectHandler.getClass(c.getParent());

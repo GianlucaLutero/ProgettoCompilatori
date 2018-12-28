@@ -173,13 +173,13 @@ public class MethodExpNode implements Node {
 								}
 								
 							//	callType = declObj.getType();
-								//lastRet = namParts[0];
+							// 	lastRet = namParts[0];
 							//	foundMethod=true;
 								
 						//	}	else {
 						//		callType = tipo;
 						//		lastRet = namParts[0];
-							//	foundMethod = true;
+						//		foundMethod = true;
 						//	}
 							
 							foundMethod=true;

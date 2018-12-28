@@ -20,7 +20,7 @@ public class NewExpNode implements Node {
 	public NewExpNode(String object_id, ArrayList<Node> arguments) {
 		
 		this.object_id = object_id;
-		this.arguments = arguments;
+		this.arguments = arguments;             
 	}
 	
 	public String getObject_id(){

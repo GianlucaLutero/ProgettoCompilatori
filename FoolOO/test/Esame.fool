@@ -1,0 +1,13 @@
+class A{
+ 
+  int m() 1;
+  
+}
+
+class B implements A
+
+class C implements A
+
+;
+let A z = if true then{new B} else{ new C};
+  in print(34);
